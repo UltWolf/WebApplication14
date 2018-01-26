@@ -12,8 +12,8 @@ using WebApplication14.Models;
 namespace WebApplication14.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20180125210306_UserMigrate")]
-    partial class UserMigrate
+    [Migration("20180126112105_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -186,6 +186,22 @@ namespace WebApplication14.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("WebApplication14.Models.Customer", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("IdentityId");
+
+                    b.Property<string>("Location");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("IdentityId");
+
+                    b.ToTable("Customers");
+                });
+
             modelBuilder.Entity("WebApplication14.Models.Order", b =>
                 {
                     b.Property<int>("OrderId")
@@ -236,7 +252,7 @@ namespace WebApplication14.Migrations
                     b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("WebApplication14.Models.User", b =>
+            modelBuilder.Entity("WebApplication14.Models.AppUser", b =>
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
 
@@ -244,17 +260,9 @@ namespace WebApplication14.Migrations
 
                     b.Property<string>("LastName");
 
-                    b.Property<string>("Location");
+                    b.ToTable("AppUser");
 
-                    b.Property<string>("Path");
-
-                    b.Property<string>("PlaceOfBirth");
-
-                    b.Property<DateTime>("Year");
-
-                    b.ToTable("User");
-
-                    b.HasDiscriminator().HasValue("User");
+                    b.HasDiscriminator().HasValue("AppUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -302,13 +310,20 @@ namespace WebApplication14.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
+            modelBuilder.Entity("WebApplication14.Models.Customer", b =>
+                {
+                    b.HasOne("WebApplication14.Models.AppUser", "Identity")
+                        .WithMany()
+                        .HasForeignKey("IdentityId");
+                });
+
             modelBuilder.Entity("WebApplication14.Models.Order", b =>
                 {
                     b.HasOne("WebApplication14.Models.Product", "Product")
                         .WithMany("Orders")
                         .HasForeignKey("ProductId");
 
-                    b.HasOne("WebApplication14.Models.User", "User")
+                    b.HasOne("WebApplication14.Models.AppUser", "User")
                         .WithMany()
                         .HasForeignKey("UserId");
                 });

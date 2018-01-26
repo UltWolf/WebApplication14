@@ -10,9 +10,9 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using WebApplication14.Models;
 using Microsoft.AspNetCore.Identity;
-using AutoMapper;
 using Microsoft.Extensions.Logging;
 using WebApplication14.Auth;
+using AutoMapper;
 
 namespace WebApplication14
 {
@@ -50,7 +50,7 @@ namespace WebApplication14
             services.AddIdentity<AppUser, IdentityRole>()
               .AddEntityFrameworkStores<ApplicationContext>()
               .AddDefaultTokenProviders();
-            
+            services.AddAutoMapper(typeof(Startup));
             services.AddAuthorization(options =>
             {
                 options.AddPolicy("ApiUser", policy => policy.RequireClaim(Helpers.Constants.Strings.JwtClaimIdentifiers.Rol, Helpers.Constants.Strings.JwtClaims.ApiAccess));

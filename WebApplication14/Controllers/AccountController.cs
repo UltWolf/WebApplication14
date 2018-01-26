@@ -43,8 +43,8 @@ namespace WebApplication14.Controllers
 
             if (!result.Succeeded) return new BadRequestObjectResult(Errors.AddErrorsToModelState(result, ModelState));
 
-            await _context.Customers.AddAsync(new Customer { IdentityId = userIdentity.Id, Location = model.PlaceOfBirth });
-            await _context.SaveChangesAsync();
+          _context.Customers.Add(new Customer { IdentityId = userIdentity.Id, Location = model.PlaceOfBirth });
+           _context.SaveChanges();
 
             return new OkObjectResult("Account created");
         }
