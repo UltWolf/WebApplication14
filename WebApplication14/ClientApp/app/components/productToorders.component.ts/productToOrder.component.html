@@ -1,0 +1,3 @@
+<p *ngIf="!products">Loading....</p>
+<div *ngIf="products">
+    <order *ngFor="let order of Orders" [order]="order" (orderEmmiter)="NgOnInit()"></order>

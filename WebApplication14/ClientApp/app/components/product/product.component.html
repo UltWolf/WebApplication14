@@ -1,0 +1,54 @@
+
+<form ngSubmit="">
+   
+    <input type="text" name="name" [(ngModel)]="name"   required minlength ="3" maxlength = "25" #fieldName = "ngModel" autocomplete="off" placeholder="Input there name">
+    <div *ngIf="fieldName.errors && ( fieldName.touched)"
+         class="alert alert-danger">
+        <div [hidden]="!fieldName.errors.required">
+            Name is required
+        </div>
+        <div [hidden]="!fieldName.errors.minlength">
+            Name must be at least 4 characters long.
+        </div>
+        <div [hidden]="!fieldName.errors.maxlength">
+            Name cannot be more than 24 characters long.
+        </div>
+    </div>
+    <input type="text" name="category" [(ngModel)]="category" required minlength ="3" maxlength = "25" #categoryField = "ngModel" autocomplete="off" placeholder="Input category">
+    <div *ngIf="categoryField.errors && ( categoryField.touched)"
+         class="alert alert-danger">
+        <div [hidden]="!categoryField.errors.required">
+            Category is required
+        </div>
+        <div [hidden]="!categoryField.errors.minlength">
+           Category must be at least 4 characters long.
+        </div>
+        <div [hidden]="!categoryField.errors.maxlength">
+            Category cannot be more than 24 characters long.
+        </div>
+    </div>
+    <input type="text" name="price" [(ngModel)]="price" required minlength ="3" maxlength = "25" #priceField = "ngModel" autocomplete="off" placeholder="Input product">>
+    <div *ngIf="priceField.errors && ( priceField.touched)"
+         class="alert alert-danger">
+        <div [hidden]="!priceField.errors.required">
+            Price is required
+        </div>
+        <div [hidden]="!priceField.errors.minlength">
+            price must be at least 4 characters long.
+        </div>
+        <div [hidden]="!priceField.errors.maxlength">
+           price cannot be more than 24 characters long.
+        </div>
+    </div>
+    <input type="text" name="country" [(ngModel)]="country"  >
+
+    <div class="file-upload">
+        <label>
+            <input #fileInput type="file" class="inputUpload" (change)="UploadAvat($event)" />
+
+            <span>Выберите файл</span>
+        </label>
+    </div>
+    <img src="data:image / gif;base64,{{imageSrc}}" height="{{imageHeight}}" width="{{imageWidth}}">
+    <button type="submit" (click)="addProduct()">New Product</button>
+</form>

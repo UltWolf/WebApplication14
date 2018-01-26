@@ -1,0 +1,12 @@
+<p *ngIf="!products">Loading....</p>
+<div *ngIf="products">
+  <ul *ngFor="let product of products">
+      <li>><img src="{{product.path}}" width="150px" height="150px"/></li>
+      {{product.name}}
+      {{product.country}}
+      {{product.price}}
+      {{product.category}}
+      <a href="http://localhost:51075/product/{{product.productId}}">Get Info</a>
+  
+  </ul>
+</div>
