@@ -1,0 +1,19 @@
+
+
+<div *ngIf="IsOn" class="bucket_on">
+    <p *ngIf="!Orders">Loading....</p>
+    <div *ngIf="Orders">
+
+        <table>
+            <tbody>
+                <tr><th>{{ 'First name'|translate}}</th><th></th><th>{{"Country"|translate}}</th><th>{{'Category'|translate}}</th><th>{{'Price'|translate}}</th></tr>
+                <order *ngFor="let order of Orders" [order]="order"></order>
+            </tbody>
+        </table>
+        <button (click)="BuyOrders()"> Buy</button>
+        <button (click)="OnOrders()">Close</button>
+    </div>
+</div>
+<div *ngIf="!IsOn" class="bucket_of">
+    <button (click)="OnOrders()" class="bucket_of_button">'Bucket' </button>
+</div>

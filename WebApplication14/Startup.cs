@@ -22,11 +22,6 @@ namespace WebApplication14
         private readonly SymmetricSecurityKey _signingKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(key));
         public Startup(IConfiguration configuration)
         {
-            //var builder = new ConfigurationBuilder()
-            //    .SetBasePath(env.WebRootPath)
-            //    .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-            //    .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
-            //    .AddEnvironmentVariables();
             Configuration = configuration;
 
         }
@@ -47,7 +42,19 @@ namespace WebApplication14
                 options.Audience = jwtAppSettingOptions[nameof(JwtIssuerOptions.Audience)];
                 options.SigningCredentials = new SigningCredentials(_signingKey, SecurityAlgorithms.HmacSha256);
             });
-            services.AddIdentity<AppUser, IdentityRole>()
+
+            services.AddIdentity<AppUser, IdentityRole>(o =>
+            {
+                o.Password.RequireDigit = false;
+
+                o.Password.RequireLowercase = false;
+
+                o.Password.RequireUppercase = false;
+
+                o.Password.RequireNonAlphanumeric = false;
+
+                o.Password.RequiredLength = 6;
+            })
               .AddEntityFrameworkStores<ApplicationContext>()
               .AddDefaultTokenProviders();
             services.AddAutoMapper(typeof(Startup));
@@ -86,6 +93,11 @@ namespace WebApplication14
             
             app.UseDefaultFiles();
             app.UseStaticFiles();
+            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            //{
+            //    ClientId = "",
+            //    ClientSecret = ""
+            //});
             var jwtAppSettingOptions = Configuration.GetSection(nameof(JwtIssuerOptions));
             var tokenValidationParameters = new TokenValidationParameters
             {
@@ -108,7 +120,6 @@ namespace WebApplication14
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
-
                 routes.MapSpaFallbackRoute(
                     name: "spa-fallback",
                     defaults: new { controller = "Home", action = "Index" });

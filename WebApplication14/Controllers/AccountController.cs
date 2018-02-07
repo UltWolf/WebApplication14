@@ -20,8 +20,6 @@ namespace WebApplication14.Controllers
         private readonly ApplicationContext _context;
         private readonly IMapper _mapper;
 
-
-
         public AccountController(UserManager<AppUser> userManager, ApplicationContext context, IMapper mapper)
         {
             _userManager = userManager;
@@ -38,8 +36,8 @@ namespace WebApplication14.Controllers
             }
 
             var userIdentity = _mapper.Map<AppUser>(model);
-
             var result = await _userManager.CreateAsync(userIdentity, model.Password);
+            await  _userManager.AddToRoleAsync(userIdentity, "Customer");
 
             if (!result.Succeeded) return new BadRequestObjectResult(Errors.AddErrorsToModelState(result, ModelState));
 
@@ -48,8 +46,5 @@ namespace WebApplication14.Controllers
 
             return new OkObjectResult("Account created");
         }
-
-
-
     }
 }

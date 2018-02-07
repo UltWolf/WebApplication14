@@ -11,12 +11,6 @@ namespace WebApplication14.Models
         public string Country { get; set; }
         public decimal Price { get; set; }
         public bool IsHave { get; set; }
-        public string Path{get;set;}
-        public ICollection<Order> Orders{get;set;}
-    public Product()
-    {
-            Orders = new Collection<Order>();
-    }
-
+        public string Path { get; set; }
     }
 }

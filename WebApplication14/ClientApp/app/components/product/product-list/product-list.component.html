@@ -1,0 +1,16 @@
+<p *ngIf="!products">{{'Loading'|translate}}....</p>
+<select [(ngModel)]="selectedValue" (change) ="ChangeParametres()">
+    <option *ngFor="let p of parametres" [ngValue]="p">{{p.name}}</option>
+</select>
+<select [(ngModel)]="selectedValueSorted" (change)="ChangeParametres()">
+    <option *ngFor="let s of sortedValue" [ngValue]="s">{{s.name}}</option>
+</select>
+<div *ngIf="products">
+
+    <productsingleinlist *ngFor="let product of products" [product]="product">
+    </productsingleinlist>
+    <ul><li *ngFor ="let page of pages" (click)="SetPage(page)">{{page}}</li></ul>
+
+  
+</div>
+<p>{{key}}</p>

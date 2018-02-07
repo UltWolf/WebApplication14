@@ -1,0 +1,19 @@
+.bucket_of{
+
+}
+.bucket_on{
+    z-index:200;
+    width: 900px;
+    border: 2px solid black;
+    margin-left: 400px;
+    margin-top: 54px;
+    position: fixed;
+    background: rgba(50,50,50,0.9);
+}
+.bucket_of_button{
+    z-index:200;
+
+    position: fixed;
+    margin-top: 32px;
+    margin-left: 825px;
+}

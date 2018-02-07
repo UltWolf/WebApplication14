@@ -1,0 +1,17 @@
+<input type="text" [(ngModel)]="name">
+<input type="text" [(ngModel)]="country">
+<input type = "number" [(ngModel)]="minprice">
+<input type="number" [(ngModel)]="Price">
+<input type="text" [(ngModel)]="category">
+<div *ngIf="!products">
+    <p> Create your search</p>
+</div>
+<div *ngIf="products">
+    <ul *ngFor="let prod of products">
+        <li>{{prod.category}}</li>
+        <li>{{prod.name}}</li>
+        <li>{{prod.price}}</li>
+        <li>{{prod.country}}</li>
+        <a href="http://localhost:55022/product/{{prod.productId}}">Get Info</a>
+    </ul>
+</div>

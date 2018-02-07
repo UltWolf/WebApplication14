@@ -1,0 +1,8 @@
+<input style="position:absolute" type="text" (change)="search()" [(ngModel)]="name">
+<ul *ngFor ="let prod of product">
+    <li>{{prod.category}}</li>
+    <li>{{prod.name}}</li>
+    <li>{{prod.price}}</li>
+    <li>{{prod.country}}</li>
+    <a href="http://localhost:55022/product/{{prod.productId}}"></a>
+</ul>

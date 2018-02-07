@@ -214,9 +214,11 @@ namespace WebApplication14.Migrations
 
                     b.Property<bool>("IsConfirm");
 
+                    b.Property<int?>("Paymentid");
+
                     b.Property<int?>("ProductId");
 
-                    b.Property<int>("TotalCost");
+                    b.Property<decimal>("TotalCost");
 
                     b.Property<string>("UserId");
 
@@ -319,7 +321,7 @@ namespace WebApplication14.Migrations
             modelBuilder.Entity("WebApplication14.Models.Order", b =>
                 {
                     b.HasOne("WebApplication14.Models.Product", "Product")
-                        .WithMany("Orders")
+                        .WithMany()
                         .HasForeignKey("ProductId");
 
                     b.HasOne("WebApplication14.Models.AppUser", "User")

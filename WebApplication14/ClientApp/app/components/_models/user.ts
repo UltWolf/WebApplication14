@@ -4,7 +4,7 @@ export class User{
         this.Email = Email;
         this.Password =  Password;
     }
-    RegistrationModel(First_name:string, Last_name:string,Email:string,Password:string,ConfirmPassword:string,PlaceOfBirth:string, Year:Date){
+    RegistrationModel(First_name:string, Last_name:string,Email:string,Password:string,ConfirmPassword:string,PlaceOfBirth:string){
 
         this.First_name = First_name;
         this.Last_name = Last_name;
@@ -12,7 +12,6 @@ export class User{
         this.Password = Password;
         this.ConfirmPassword = ConfirmPassword;
         this.PlaceOfBirth = PlaceOfBirth;
-        this.Year = Year;
     }
     First_name:string;
     Last_name:string;
@@ -20,6 +19,5 @@ export class User{
     Password:string;
     ConfirmPassword:string;
     PlaceOfBirth:string;
-    Year: Date;
 
 }

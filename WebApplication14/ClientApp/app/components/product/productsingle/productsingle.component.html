@@ -1,0 +1,12 @@
+﻿
+<div *ngIf="name">
+    <h1>Information about {{name}}</h1>
+    {{country}}
+    {{price}}
+    <img [src]="path" height="400px" width="300px"/>
+    <input type="number" name="count" [(ngModel)] = "count" required/>
+    <button (click)=" AddProductToBucket()">BUY</button>
+</div>
+<div *ngIf="!name">
+    We don't find, please try again
+</div>

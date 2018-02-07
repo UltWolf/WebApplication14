@@ -7,34 +7,50 @@
                 <span class='icon-bar'></span>
                 <span class='icon-bar'></span>
             </button>
-            <a class='navbar-brand' [routerLink]="['/home']">WebApplication14</a>
+            <a class='navbar-brand' [routerLink]="['/home']">Romfy </a>
         </div>
         <div class='clearfix'></div>
         <div class='navbar-collapse collapse'>
             <ul class='nav navbar-nav'>
                 <li [routerLinkActive]="['link-active']">
                     <a [routerLink]="['/home']">
-                        <span class='glyphicon glyphicon-home'></span> Home
+                        <span class='glyphicon glyphicon-home'></span> {{ 'Home' | translate }}
                     </a>
                 </li>
                 <li [routerLinkActive]="['link-active']">
                     <a [routerLink]="['/product']">
-                        <span class='glyphicon glyphicon-home'></span> List
+                        <span class='glyphicon glyphicon-home'></span> {{ 'List' | translate }}
                     </a>
                 </li>
-                <li [routerLinkActive]="['link-active']">
+                <li [routerLinkActive]="['link-active']" *ngIf="isAuth">
                     <a [routerLink]="['/product/add']">
-                        <span class='glyphicon glyphicon-home'></span>Product add
+                        <span class='glyphicon glyphicon-home'></span>{{ 'Product Add' | translate }}
                     </a>
                 </li>
-                <li [routerLinkActive]="['link-active']">
+
+                <li [routerLinkActive]="['link-active']" *ngIf="!isAuth">
                     <a [routerLink]="['/login']">
-                        <span class='glyphicon glyphicon-home'></span>Sign in
+                        <span class='glyphicon glyphicon-home'></span>{{ 'Sign in' | translate }}
+                    </a>
+                </li>
+                <li [routerLinkActive]="['link-active']" *ngIf="!isAuth">
+                    <a [routerLink]="['/register']">
+                        <span class='glyphicon glyphicon-home'></span>{{ 'Sign up' | translate }}
                     </a>
                 </li>
                 <li [routerLinkActive]="['link-active']">
-                    <a [routerLink]="['/register']">
-                        <span class='glyphicon glyphicon-home'></span>Sign up
+                    <a [routerLink]="['/orders']">
+                        <span class='glyphicon glyphicon-home'></span>{{ 'Price' | translate }}
+                    </a>
+                </li>
+                <li [routerLinkActive]="['link-active']">
+                    <a [routerLink]="['/confirmorder']">
+                        <span class='glyphicon glyphicon-home'></span>Buy
+                    </a>
+                </li>
+                <li *ngIf="isAuth">
+                    <a (click)="logout()">
+                        <span class='glyphicon glyphicon-home'></span>{{ 'Log Out' | translate }}
                     </a>
                 </li>
 

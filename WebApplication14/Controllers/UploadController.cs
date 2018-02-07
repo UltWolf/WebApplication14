@@ -22,7 +22,7 @@ namespace WebApplication14.Controllers
 
         [HttpPost]
         [Route("/api/upload")]
-        public async Task<IActionResult> Upload(IFormFile file)
+        public IActionResult Upload(IFormFile file)
         {
             if (file == null) throw new Exception("File is null");
             if (file.Length == 0) throw new Exception("File is empty");
@@ -32,7 +32,7 @@ namespace WebApplication14.Controllers
                 using (var binaryReader = new BinaryReader(stream))
                 {
                     var fileContent = binaryReader.ReadBytes((int)file.Length);
-                    string path = await _uploadService.AddFile(fileContent, file.FileName, file.ContentType, _environment);
+                    string path  =   Convert.ToBase64String(fileContent);
 
                     return Ok(path);
                 }

@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import { Router } from '@angular/router';
 import { User} from "../_models/user";
 import { AuthenticationService } from '../_services/auth.services';
 
 @Component({
+    selector:"login",
     providers: [AuthenticationService],
     templateUrl: 'login.component.html'
 })
@@ -20,17 +21,15 @@ export class LoginComponent implements OnInit {
     }
 
     ngOnInit() {
-        // reset login statu
-        this.authenticationService.logout();
     }
 
     login() {
         this.loading = true;
         const user = new User();
-        user.LoginModel(this.model.Login, this.model.password)
+        user.LoginModel(this.model.Login, this.model.password);
         this.authenticationService.login(user)
             .subscribe(result => {
-                if (result === true) {
+                if (result.ok === true) {
                     this.router.navigate(['/']);
                 } else {
                     this.error = 'Username or password is incorrect';

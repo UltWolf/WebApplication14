@@ -8,6 +8,10 @@ import { UploadService } from "./components/_services/uploading.services";
 import { AuthenticationService } from "./components/_services/auth.services";
 import { HttpModule } from "@angular/http";
 import { FormsModule } from "@angular/forms";
+import { AuthGuard } from './components/auth.guard';
+import { AdminGuard } from './components/admin.guard';
+import {TRANSLATION_PROVIDERS} from "./components/translation/translation";
+import {TranslateService} from "./components/translation/translate.service";
 
 
 @NgModule({
@@ -23,7 +27,11 @@ import { FormsModule } from "@angular/forms";
         UploadService,
         ProductService,
         BuketService,
+        AuthGuard,
+        AdminGuard,
         AppComponent,
+        TRANSLATION_PROVIDERS,
+        TranslateService,
         { provide: 'BASE_URL', useFactory: getBaseUrl },
     ]
 })

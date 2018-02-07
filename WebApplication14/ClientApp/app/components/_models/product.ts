@@ -2,7 +2,7 @@ export class Product{
       productId:number;
       category:string; 
       name :string;
-      path:string;
+      path:any;
       country: string;
       price: number;
       IsHave:boolean;

@@ -5,11 +5,13 @@ import { BaseService } from "./base.service";
 import { Observable } from 'rxjs/Rx';
 import { BehaviorSubject } from 'rxjs/Rx';
 import { User } from "../_models/user";
+import {JwtHelper} from "angular2-jwt";
+
 
 @Injectable()
 export class AuthenticationService extends BaseService {
     public token: string | null;
-   
+    
     private _authNavStatusSource = new BehaviorSubject<boolean>(false);
     
     authNavStatus$ = this._authNavStatusSource.asObservable();
@@ -20,45 +22,76 @@ export class AuthenticationService extends BaseService {
         if (typeof window !== 'undefined') {
             this.loggedIn = !!localStorage.getItem('auth_token');
             this._authNavStatusSource.next(this.loggedIn);
+            
         }
         
           
     }
-    register(user:User) 
-    {    
-       let body = JSON.stringify({ user});
-       let headers = new Headers({ 'Content-Type': 'application/json' });
-        let options = new RequestOptions({ headers: headers });
-        return this.http.post('http://localhost:51075/api/Account/', body).map((response) => {
-            console.log(response);
-            return response.json();
+    register(User:User) 
+    {  if (typeof window != 'undefined') {
+        this.loggedIn = false;
+        localStorage.removeItem('auth_token');
+    }
+        return this.http.post('http://localhost:55022/api/Account/', User).map((response) => {
+            return response;
         });
        
     }
 
     login(User: User) 
-    {
-     let headers = new Headers();
-     headers.append('Content-Type', 'application/json');
-     return this.http.post('http://localhost:51075/api/Auth', User).map((res) => res.json).map((response:any) => {
-         console.log(response);
-         if (typeof window !== 'undefined') {
-             localStorage.setItem('auth_token', response.auth_token);
-             this.loggedIn = true;
-             this._authNavStatusSource.next(true);
-             return true;
-         }
-                })
+    {  if (typeof window != 'undefined') {
+        this.loggedIn = false;
+        localStorage.removeItem('auth_token');
+    }
+        return this.http.post('http://localhost:55022/api/Auth/', User).map((response) => {
+            localStorage.setItem('auth_token', response.json().auth_token);
+            this.loggedIn = true;
+            this._authNavStatusSource.next(true);
+            return response;
+        });
+    }
+    getToken():string {
+        if (typeof window != 'undefined') {
+
+            return localStorage.getItem('auth_token')||"";
+        } else {
+            return "notFound";
         }
-    
 
-    logout(): void {
-        this.token = null;
-        localStorage.removeItem('currentUser');
+    }
+    jwtHelper: JwtHelper = new JwtHelper();
+
+    getUserId() {
+
+        var token = this.jwtHelper.decodeToken(this.getToken());
+        return token.id;
     }
 
-    setToken(token: any, User: User):void{
-        this.token = token;
-        localStorage.setItem('currentUser', JSON.stringify({ username: User.Email, token: token }));
+    logout(): void {  if (typeof window != 'undefined') {
+        this.loggedIn = false;
+        localStorage.removeItem('auth_token');
     }
+    }
+
+    isAdmin(): boolean {
+        var decodedToken = this.jwtHelper.decodeToken(this.getToken());
+        if (decodedToken.rol == "Admin") {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    isLogg(): boolean {
+        if (typeof window != 'undefined') {
+            var token = localStorage.getItem('auth_token');
+            if (token != null) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        return false;
+    }
+
 }

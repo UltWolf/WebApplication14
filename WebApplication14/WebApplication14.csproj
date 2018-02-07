@@ -10,8 +10,15 @@
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="6.2.2" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="3.2.0" />
-    <PackageReference Include="FluentValidation.AspNetCore" Version="7.3.4" />
+    <PackageReference Include="Braintree" Version="3.11.0" />
+    <PackageReference Include="BraintreeHttp-Dotnet" Version="0.2.1" />
+    <PackageReference Include="EPPlus.Core" Version="1.5.4" />
+    <PackageReference Include="FluentValidation.AspNetCore" Version="7.3.4" /> 
+    <PackageReference Include="log4net" Version="2.0.8" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.5" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.2" />
+    <PackageReference Include="PayPal" Version="2.0.0-beta00" />
+
   </ItemGroup>
 
   <ItemGroup>
@@ -24,15 +31,43 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="ClientApp\app\components\productsingle\productsingle.component.ts" />
+    <None Remove="ClientApp\app\components\admin.guard.ts" />
+    <None Remove="ClientApp\app\components\auth.guard.ts" />
+    <None Remove="ClientApp\app\components\permision\permision.component.ts" />
+    <None Remove="ClientApp\app\components\product\productsingle\productsingle.component.ts" />
+    <None Remove="ClientApp\app\components\product\product-routing.module.ts" />
+    <None Remove="ClientApp\app\components\product\product.module.ts" />
+    <None Remove="ClientApp\app\components\_models\confirmResult.ts" />
     <None Remove="ClientApp\app\components\_models\local-storage.component.ts" />
+    <None Remove="ClientApp\app\components\_models\orderModel.ts" />
+    <None Remove="ClientApp\app\components\_models\parametresRole.ts" />
+    <None Remove="ClientApp\app\components\_models\SortModel.ts" />
+    <None Remove="ClientApp\app\components\_pipes\safesrc.pipes.ts" />
     <None Remove="ClientApp\app\components\_services\base.service.ts" />
+    <None Remove="ClientApp\app\components\_services\event.services.ts" />
+    <None Remove="ClientApp\app\components\_services\paginate.service.ts" />
   </ItemGroup>
 
   <ItemGroup>
-    <TypeScriptCompile Include="ClientApp\app\components\productsingle\productsingle.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\admin.guard.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\auth.guard.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\permision\permision.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\product\productsingle\productsingle.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\product\product-routing.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\product\product.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\_models\confirmResult.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\_models\local-storage.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\_models\orderModel.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\_models\parametresRole.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\_models\SortModel.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\_pipes\safesrc.pipes.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\_services\base.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\_services\event.services.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\_services\paginate.service.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ClientApp\app\components\Новая папка\" />
   </ItemGroup>
 
   <Target Name="DebugRunWebpack" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('wwwroot\dist') ">

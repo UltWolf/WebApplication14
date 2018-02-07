@@ -1,41 +1,41 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebApplication14.Models;
+using WebApplication14.Models.ViewModel;
 
 namespace WebApplication14.Controllers {
 
-    [Route ("api/Product")]
+    [Route("api/Product")]
     public class ProductController : Controller {
         private readonly ApplicationContext _context;
-        public ProductController (ApplicationContext context) {
+        public ProductController(ApplicationContext context) {
             _context = context;
         }
 
-        [AllowAnonymous]
-        [HttpGet]
-        public async Task<IEnumerable<Product>> GetProducts () {
-            var makes = await _context.Products.Include (m => m.Orders).ToListAsync ();
-            return makes;
-        }
+        
 
         [AllowAnonymous]
-        [HttpGet ("{id}")]
-        public IActionResult GetProduct ([FromRoute] int id) {
-            if (!ModelState.IsValid) {
-                return BadRequest (ModelState);
+        [HttpGet("{id}")]
+        public IActionResult GetProduct([FromRoute] int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
             }
 
-            var product = _context.Products.SingleOrDefault (m => m.ProductId == id);
+            var product = _context.Products.SingleOrDefault(m => m.ProductId == id);
 
-            if (product == null) {
-                return NotFound ();
+            if (product == null)
+            {
+                return NotFound();
             }
 
-            return Ok (product);
+            return Ok(product);
         }
 
         [HttpPut ("{id}")]

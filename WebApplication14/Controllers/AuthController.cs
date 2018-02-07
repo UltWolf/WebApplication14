@@ -19,16 +19,17 @@ using System.Security.Claims;
 
 namespace WebApplication14.Controllers
 {
-    [Route("api/auth")]
+    [Route("api/Auth")]
     public class AuthController:Controller
     {
         private readonly UserManager<AppUser> _userManager;
         private readonly IJwtFactory _jwtFactory;
         private readonly JsonSerializerSettings _serializerSettings;
         private readonly JwtIssuerOptions _jwtOptions;
-
-        public AuthController(UserManager<AppUser> userManager, IJwtFactory jwtFactory, IOptions<JwtIssuerOptions> jwtOptions)
+        private readonly RoleManager<IdentityRole>_roleManager;
+        public AuthController(RoleManager<IdentityRole> roleManager,UserManager<AppUser> userManager, IJwtFactory jwtFactory, IOptions<JwtIssuerOptions> jwtOptions)
         {
+            _roleManager = roleManager;
             _userManager = userManager;
             _jwtFactory = jwtFactory;
             _jwtOptions = jwtOptions.Value;
@@ -46,18 +47,17 @@ namespace WebApplication14.Controllers
             {
                 return BadRequest(ModelState);
             }
-
             var identity = await GetClaimsIdentity(model.Email, model.Password);
             if (identity == null)
             {
                 return BadRequest(Errors.AddErrorToModelState("login_failure", "Invalid username or password.", ModelState));
             }
-
-            // Serialize and return the response
+            var userToVerify = await _userManager.FindByNameAsync(model.Email);
+            List<string> ListRoles = new List<string>(await _userManager.GetRolesAsync(userToVerify));
             var response = new
             {
                 id = identity.Claims.Single(c => c.Type == "id").Value,
-                auth_token = await _jwtFactory.GenerateEncodedToken(model.Email, identity),
+                auth_token = await _jwtFactory.GenerateEncodedToken(model.Email, identity,ListRoles),
                 expires_in = (int)_jwtOptions.ValidFor.TotalSeconds
             };
 
@@ -66,19 +66,17 @@ namespace WebApplication14.Controllers
         }
         private async Task<ClaimsIdentity> GetClaimsIdentity(string userName, string password)
         {
-            if (!string.IsNullOrEmpty(userName) && !string.IsNullOrEmpty(password))
-            {
+           
                 var userToVerify = await _userManager.FindByNameAsync(userName);
-                if (userToVerify != null)
+                List<string> ListRoles = new List<string>(await _userManager.GetRolesAsync(userToVerify));
+            if (userToVerify != null)
                 {
-                    if (!await _userManager.CheckPasswordAsync(userToVerify, password))
+                    if (await _userManager.CheckPasswordAsync(userToVerify, password))
                     {
-                        return  _jwtFactory.GenerateClaimsIdentity(userName, userToVerify.Id);
-                       
-                    
+                    return _jwtFactory.GenerateClaimsIdentity(userName, userToVerify.Id,ListRoles);  
                     }
                 }
-            }
+            
             return null;
         }
     }
