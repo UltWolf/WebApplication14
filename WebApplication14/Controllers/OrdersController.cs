@@ -14,8 +14,8 @@ namespace WebApplication14.Controllers {
     [Route("api/Orders")]
     public class OrdersController : Controller {
         private readonly ApplicationContext _context;
-        private readonly UserManager<AppUser> _userManager;
-        public OrdersController(ApplicationContext context, UserManager<AppUser> userManager) {
+        private readonly UserManager<ApplicationUser> _userManager;
+        public OrdersController(ApplicationContext context, UserManager<ApplicationUser> userManager) {
             _context = context;
             _userManager = userManager;
         }

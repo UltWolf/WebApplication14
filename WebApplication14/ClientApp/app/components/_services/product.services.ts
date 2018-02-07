@@ -19,7 +19,7 @@ export class ProductService {
         });
     }
     getProducts(sortModel: sortModel) {
-        return this.http.post(this._baseUrl +'api/Products/', sortModel).map((response) => {
+        return this.http.post('api/Products/', sortModel).map((response) => {
             return response.json();
         });
     }

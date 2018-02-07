@@ -16,11 +16,11 @@ namespace WebApplication14.Controllers
     [Route("api/Account")]
     public class AccountController : Controller
     {
-        private readonly UserManager<AppUser> _userManager;
+        private readonly UserManager<ApplicationUser> _userManager;
         private readonly ApplicationContext _context;
         private readonly IMapper _mapper;
 
-        public AccountController(UserManager<AppUser> userManager, ApplicationContext context, IMapper mapper)
+        public AccountController(UserManager<ApplicationUser> userManager, ApplicationContext context, IMapper mapper)
         {
             _userManager = userManager;
             _context = context;
@@ -35,7 +35,7 @@ namespace WebApplication14.Controllers
                 return BadRequest(ModelState);
             }
 
-            var userIdentity = _mapper.Map<AppUser>(model);
+            var userIdentity = _mapper.Map<ApplicationUser>(model);
             var result = await _userManager.CreateAsync(userIdentity, model.Password);
             await  _userManager.AddToRoleAsync(userIdentity, "Customer");
 

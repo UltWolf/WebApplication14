@@ -12,7 +12,7 @@ namespace WebApplication14.Mapping
         {
             public MappingRegisterToUser()
             {
-                CreateMap<RegisterModel, AppUser>().ForMember(au => au.UserName, map => map.MapFrom(vm => vm.Email));
+                CreateMap<RegisterModel, ApplicationUser>().ForMember(au => au.UserName, map => map.MapFrom(vm => vm.Email));
             }
         }
     }

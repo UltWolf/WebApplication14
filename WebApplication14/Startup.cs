@@ -43,7 +43,7 @@ namespace WebApplication14
                 options.SigningCredentials = new SigningCredentials(_signingKey, SecurityAlgorithms.HmacSha256);
             });
 
-            services.AddIdentity<AppUser, IdentityRole>(o =>
+            services.AddIdentity<ApplicationUser, IdentityRole>(o =>
             {
                 o.Password.RequireDigit = false;
 

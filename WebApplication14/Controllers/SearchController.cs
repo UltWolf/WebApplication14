@@ -14,9 +14,9 @@ namespace WebApplication14.Controllers
     public class SearchController : Controller
     {
         private readonly ApplicationContext _context;
-        private readonly UserManager<AppUser> _userManager;
+        private readonly UserManager<ApplicationUser> _userManager;
        
-        public SearchController(ApplicationContext context, UserManager<AppUser> userManager)
+        public SearchController(ApplicationContext context, UserManager<ApplicationUser> userManager)
         {
             _context = context;
             _userManager = userManager;
