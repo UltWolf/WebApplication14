@@ -1,14 +1,17 @@
 .bucket_of{
 
 }
-.bucket_on{
-    z-index:200;
+.bucket_on {
+    z-index: 200;
     width: 900px;
     border: 2px solid black;
     margin-left: 400px;
     margin-top: 54px;
     position: fixed;
-    background: rgba(50,50,50,0.9);
+    background: rgba(255,255,255,0.7);
+}
+td{
+    margin-left:5px;
 }
 .bucket_of_button{
     z-index:200;

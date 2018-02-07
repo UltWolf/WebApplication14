@@ -1,8 +1,16 @@
-<input type="text" [(ngModel)]="name">
-<input type="text" [(ngModel)]="country">
-<input type = "number" [(ngModel)]="minprice">
-<input type="number" [(ngModel)]="Price">
-<input type="text" [(ngModel)]="category">
+<div class="search">
+    <label>Name</label>
+    <input type="text" [(ngModel)]="name">
+    <label>country</label>
+    <input type="text" [(ngModel)]="country">
+    <label>minprice</label>
+    <input type="number" [(ngModel)]="minprice">
+    <label>maxprice</label>
+    <input type="number" [(ngModel)]="Price">
+    <label>category</label>
+    <input type="text" [(ngModel)]="category">
+    <button (click)="search()"> Search</button>
+</div>
 <div *ngIf="!products">
     <p> Create your search</p>
 </div>

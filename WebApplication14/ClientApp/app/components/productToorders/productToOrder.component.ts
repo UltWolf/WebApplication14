@@ -3,6 +3,7 @@ import { Response } from '@angular/http';
 import { Component, OnInit, OnChanges, ViewChild } from '@angular/core';
 import { BuketService } from '../_services/buket.service';
 import { AuthenticationService } from '../_services/auth.services';
+import { Router } from '@angular/router';
 
 
 
@@ -17,7 +18,7 @@ export class ProductToOrderComponent implements OnInit{
     Orders:Order[];
     IsOn: boolean = false;
     totalPrice: number = 0;
-    constructor(private buketService: BuketService,private _authService:AuthenticationService) {
+    constructor(private route:Router,private buketService: BuketService,private _authService:AuthenticationService) {
         this.GetListOrder();
 
       
@@ -42,12 +43,11 @@ export class ProductToOrderComponent implements OnInit{
         this.IsOn = !this.IsOn;
     }
     BuyOrders() {
-        this.buketService.makePayment(this.totalPrice).subscribe((res) => {
-            console.log(res);
-        });
+        this.route.navigate(['confirmorder']);
     }
     deleteOrders(){
-     this.buketService.deleteOrders().subscribe(()=>{
+        this.buketService.deleteOrders().subscribe(() => {
+            this.buketService.getOrders(this._authService.getUserId());
      })
     }
 }

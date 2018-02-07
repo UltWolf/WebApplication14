@@ -1,5 +1,5 @@
 import { Product } from './../_models/product';
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import 'rxjs';
 import {SearchModel} from "../_models/searchModel";
@@ -13,13 +13,13 @@ export class SearchService {
 
     baseUrl: string;
 
-    searchName(name:Name) {
-        return this.http.post('http://localhost:55022/api/search/LikeName/',name).map((response) => {
+    searchName(name: Name) {
+        return this.http.post('api/search/LikeName/', name).map((response) => {
             return response.json();
         });
     }
-    searchOptions(searchModel:SearchModel) {
-        return this.http.post('http://localhost:55022/api/search/',searchModel).map((response) =>{
+    searchOptions(searchModel: SearchModel) {
+        return this.http.post('api/search/', searchModel).map((response) => {
         return response.json();
     })
     }

@@ -9,7 +9,8 @@ import {Product} from "../_models/product";
 
 @Component({
     providers:[SearchService],
-    templateUrl:'fullsearch.component.html',
+    templateUrl: 'fullsearch.component.html',
+    styleUrls:[  'fullsearch.component.css']
 
 })
 export class FullsearchComponent {

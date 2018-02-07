@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 
 import { BaseService } from "./base.service";
@@ -6,6 +6,7 @@ import { Observable } from 'rxjs/Rx';
 import { BehaviorSubject } from 'rxjs/Rx';
 import { User } from "../_models/user";
 import {JwtHelper} from "angular2-jwt";
+import { Router } from '@angular/router';
 
 
 @Injectable()
@@ -16,8 +17,8 @@ export class AuthenticationService extends BaseService {
     
     authNavStatus$ = this._authNavStatusSource.asObservable();
     private loggedIn = false;
-
-    constructor(private http: Http) {
+    private _baseUrl: string;
+    constructor(private http: Http,private route:Router ) {
         super();
         if (typeof window !== 'undefined') {
             this.loggedIn = !!localStorage.getItem('auth_token');
@@ -32,7 +33,7 @@ export class AuthenticationService extends BaseService {
         this.loggedIn = false;
         localStorage.removeItem('auth_token');
     }
-        return this.http.post('http://localhost:55022/api/Account/', User).map((response) => {
+        return this.http.post('/api/Account/', User).map((response) => {
             return response;
         });
        
@@ -43,7 +44,7 @@ export class AuthenticationService extends BaseService {
         this.loggedIn = false;
         localStorage.removeItem('auth_token');
     }
-        return this.http.post('http://localhost:55022/api/Auth/', User).map((response) => {
+        return this.http.post('api/Auth/', User).map((response) => {
             localStorage.setItem('auth_token', response.json().auth_token);
             this.loggedIn = true;
             this._authNavStatusSource.next(true);
@@ -70,6 +71,7 @@ export class AuthenticationService extends BaseService {
     logout(): void {  if (typeof window != 'undefined') {
         this.loggedIn = false;
         localStorage.removeItem('auth_token');
+        this.route.navigate(['login']);
     }
     }
 

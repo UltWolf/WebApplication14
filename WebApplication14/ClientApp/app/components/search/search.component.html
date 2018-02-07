@@ -1,8 +1,19 @@
-<input style="position:absolute" type="text" (change)="search()" [(ngModel)]="name">
-<ul *ngFor ="let prod of product">
-    <li>{{prod.category}}</li>
-    <li>{{prod.name}}</li>
-    <li>{{prod.price}}</li>
-    <li>{{prod.country}}</li>
-    <a href="http://localhost:55022/product/{{prod.productId}}"></a>
-</ul>
+<input style="position:absolute;margin-left: 350px;
+z-index: 250;" type="text" (change)="search()" [(ngModel)]="name">
+<div style="position:absolute;margin-left: 650px;width: 450px;z-index :120;position: absolute;
+margin-left: 680px;
+width: 450px;
+z-index: 120;
+margin-top: 30px;
+background: rgba(255,255,255,0.8);
+padding: 25px;
+border: black solid 2px;" *ngIf="product">
+    <ul *ngFor="let prod of product">
+        <li><img src="{{prod.path}}" width="20px" height="20px" /></li>
+        <li style="text-decoration:none;">{{prod.category}} </li>
+        <li>{{prod.name}} </li>
+        <li>{{prod.price}} </li>
+        <li>{{prod.country}} </li>
+        <a href="product/{{prod.productId}}">Watch full</a>
+    </ul>
+</div>

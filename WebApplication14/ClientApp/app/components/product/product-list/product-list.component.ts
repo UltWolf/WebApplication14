@@ -34,8 +34,7 @@ export class ProductListComponent implements OnInit{
     selectedValue = this.parametres[0];
     selectedValueSorted = this.sortedValue[0];
   constructor(private paginator:PagerService, private productService: ProductService,private route:ActivatedRoute, private fileService: UploadService, private sanitizer: DomSanitizer) {
-  this.GetListProduct();
- 
+
     }
 
   totalpages: number;
@@ -45,7 +44,7 @@ export class ProductListComponent implements OnInit{
   hasNext: boolean;
     key: any;
     ngOnInit(){
-
+        this.GetListProduct();
     }
     SetPage(numberpage: number): void{
         let model: sortModel = new sortModel();

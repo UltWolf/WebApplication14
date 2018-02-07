@@ -18,7 +18,7 @@
                     </a>
                 </li>
                 <li [routerLinkActive]="['link-active']">
-                    <a [routerLink]="['/product']">
+                    <a [routerLink]="['/products']">
                         <span class='glyphicon glyphicon-home'></span> {{ 'List' | translate }}
                     </a>
                 </li>
@@ -38,18 +38,14 @@
                         <span class='glyphicon glyphicon-home'></span>{{ 'Sign up' | translate }}
                     </a>
                 </li>
-                <li [routerLinkActive]="['link-active']">
-                    <a [routerLink]="['/orders']">
-                        <span class='glyphicon glyphicon-home'></span>{{ 'Price' | translate }}
-                    </a>
-                </li>
+             
                 <li [routerLinkActive]="['link-active']">
                     <a [routerLink]="['/confirmorder']">
                         <span class='glyphicon glyphicon-home'></span>Buy
                     </a>
                 </li>
                 <li *ngIf="isAuth">
-                    <a (click)="logout()">
+                    <a (click)="logout()"  [routerLink]="['/login']">
                         <span class='glyphicon glyphicon-home'></span>{{ 'Log Out' | translate }}
                     </a>
                 </li>

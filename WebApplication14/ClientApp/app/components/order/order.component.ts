@@ -27,12 +27,13 @@ export class OrderComponent {
         if (this.count > 0) {
 
             const orderPost = new OrderModel(this._authService.getUserId(), this.count);
-            this.buketService.addOrder(this.order.product.productId, orderPost).subscribe((order: Order) => {
-            })
+            this.buketService.addOrder(this.order.product.productId, orderPost).subscribe((res) =>{
+        });
         }
     }
     Delete() {
         this.buketService.deleteOrder(this.order.orderId, this._authService.getUserId()).subscribe((result) => {
+
             this.buketService.getOrders(this._authService.getUserId());
         }
             );

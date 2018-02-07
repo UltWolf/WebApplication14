@@ -1,7 +1,7 @@
 ﻿
 import { Response } from '@angular/http';
 import { Component, OnInit, OnChanges, ViewChild } from '@angular/core';
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { ProductService } from '../../_services/product.services';
 import { BuketService } from '../../_services/buket.service';
 import { Product } from '../../_models/product';
@@ -24,12 +24,12 @@ export class ProductSingleComponent implements OnInit {
     price: number;
     ProductId: number
 
-    constructor(private _authService: AuthenticationService,private productService: ProductService, private route: ActivatedRoute,private sanitizer:DomSanitizer, private bucket: BuketService) {
-        this.GetProduct();
+    constructor(private router:Router,private _authService: AuthenticationService,private productService: ProductService, private route: ActivatedRoute,private sanitizer:DomSanitizer, private bucket: BuketService) {
+        
     }
 
     ngOnInit() {
-
+        this.GetProduct();
     }
 
     GetProduct() {
@@ -43,8 +43,8 @@ export class ProductSingleComponent implements OnInit {
     }
     AddProductToBucket() {
         const orderPost = new OrderModel(this._authService.getUserId(), this.count);
-        this.bucket.addOrder(this.ProductId, orderPost).subscribe((product: Product) => {
-           
+        this.bucket.addOrder(this.ProductId, orderPost).subscribe((product) => {
+            this.router.navigate(['products']);
         })
     }
 

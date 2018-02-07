@@ -12,44 +12,37 @@ import { confirmResult } from '../_models/confirmResult';
 
 @Injectable()
 export class BuketService {
+
     constructor(private http: Http) {
+       
     }
 
-    baseUrl: string;
+
 
     deleteOrder(id: number, IdUser: UserID) {
-        return this.http.delete('http://localhost:55022/api/Orders/' + id).map((response) => {
+        return this.http.delete('api/Orders/' + id).map((response) => {
             return response;
         });
     }
     deleteOrders() {
-        return this.http.get('http://localhost:55022/api/Orders/').map((response) => {
+        return this.http.get('api/Orders/').map((response) => {
             return response.json();
         });
     }
     getOrdersConfirm(id: number) {
-        return this.http.get('http://localhost:55022/paypal/create-payment/' + id).map((response: any) => {
+        return this.http.get('paypal/create-payment/' + id).map((response: any) => {
             var result: confirmResult = response.json();
             return result;
         });
     }
     getOrders(id: number) {
-        return this.http.get('http://localhost:55022/api/Orders/' + id).map((response) => { 
+        return this.http.get('api/Orders/' + id).map((response) => { 
             return response.json();
         });
     }
-
-    makePayment(sum: any) {
-        return this.http.post('http://localhost:55022/paypal/make/payment?sum=' + sum, {})
-            .map((response: Response) => response.json());
-    }
-    completePayment(paymentId: any, payerId: any) {
-        return this.http.post('http://localhost:55022/paypal/complete/payment?paymentId=' + paymentId + '&payerId=' + payerId, {})
-            .map((response: Response) => response.json());
-    }
-    addOrder(id: number, orderPost: OrderModel) {
-        return this.http.post('http://localhost:55022/api/Orders/' + id, orderPost).map((response) => {
-            return response.json();
+    addOrder(id: number, orderPost: OrderModel): Observable<boolean> {
+        return this.http.post('api/Orders/' + id, orderPost).map(() => {
+            return true;
         });
     }
 

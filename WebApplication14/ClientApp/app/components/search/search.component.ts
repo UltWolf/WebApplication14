@@ -6,6 +6,7 @@ import {Name} from "../_services/name";
 @Component({
     selector:"search",
     providers: [SearchService],
+    styleUrls:['search.component.css'],
     templateUrl: 'search.component.html'
 })
 
