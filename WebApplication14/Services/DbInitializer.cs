@@ -9,30 +9,38 @@ using WebApplication14.Models.ViewModel;
 
 namespace WebApplication14.Services
 {
-    public class DbInitializer
+    public class DbInitializer:IDbInitializer
     {
-        
 
-        public static  async void Initialize(ApplicationContext _context,
-            UserManager<ApplicationUser> _userManager,
-            RoleManager<IdentityRole> _roleManager)
+        private readonly ApplicationContext _context;
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
+
+        public DbInitializer(
+            ApplicationContext context,
+            UserManager<ApplicationUser> userManager,
+            RoleManager<IdentityRole> roleManager)
         {
+            _context = context;
+            _userManager = userManager;
+            _roleManager = roleManager;
+        }
 
+        public async void Initialize()
+        {
             _context.Database.EnsureCreated();
 
+           
             if (_context.Roles.Any(r => r.Name == "Admin")) return;
 
             await _roleManager.CreateAsync(new IdentityRole("Admin"));
-
-          
-            string user = "admin@gmail.com";
-            string password = "qwerty1234";
-            await _userManager.CreateAsync(new ApplicationUser() { UserName = user, Email = user, EmailConfirmed = true }, password);
-            await _userManager.AddToRoleAsync(await _userManager.FindByNameAsync(user), "Admin");
-
             
-
+            string user = "admin3@gmail.com";
+            string password = "qwerty1234";
+            await _userManager.CreateAsync(new ApplicationUser { UserName = user, Email = user, EmailConfirmed = true }, password);
+            await _userManager.AddToRoleAsync(await _userManager.FindByNameAsync(user), "Admin");
         }
     }
-}
+    }
+
  

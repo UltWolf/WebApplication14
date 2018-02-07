@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -27,7 +28,8 @@ namespace WebApplication14
                     var context = services.GetRequiredService<ApplicationContext>();
                     var _userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
                     var _roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
-                    DbInitializer.Initialize(context,_userManager,_roleManager);//<---Do your seeding here
+                    var mapper = services.GetRequiredService<IMapper>();
+                    DbInitializer.Initialize(context,_userManager,_roleManager,mapper);//<---Do your seeding here
                 }
                 catch (Exception ex)
                 {

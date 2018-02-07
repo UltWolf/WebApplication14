@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
 using WebApplication14.Auth;
 using AutoMapper;
+using WebApplication14.Services;
 
 namespace WebApplication14
 {
@@ -32,7 +33,7 @@ namespace WebApplication14
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            
+            services.AddScoped<IDbInitializer, DbInitializer>();
             var jwtAppSettingOptions = Configuration.GetSection(nameof(JwtIssuerOptions));
 
             services.AddDbContext<ApplicationContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("RomfyConnection")));
@@ -75,7 +76,7 @@ namespace WebApplication14
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env,ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env,ILoggerFactory loggerFactory, IDbInitializer dbInitializer)
         {
             loggerFactory.AddConsole();
             if (env.IsDevelopment())
@@ -98,6 +99,7 @@ namespace WebApplication14
             //    ClientId = "",
             //    ClientSecret = ""
             //});
+            dbInitializer.Initialize();
             var jwtAppSettingOptions = Configuration.GetSection(nameof(JwtIssuerOptions));
             var tokenValidationParameters = new TokenValidationParameters
             {
