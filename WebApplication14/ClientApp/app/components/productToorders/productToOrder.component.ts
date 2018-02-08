@@ -15,8 +15,9 @@ import { Router } from '@angular/router';
 })
 export class ProductToOrderComponent implements OnInit{
 
-    Orders:Order[] = [];
+    Orders:Order[]= [];
     IsOn: boolean = false;
+    IsHaveOrders: string = "";
     totalPrice: number = 0;
     constructor(private route:Router,private buketService: BuketService,private _authService:AuthenticationService) {
    
@@ -32,12 +33,19 @@ export class ProductToOrderComponent implements OnInit{
     GetListOrder() {
         if(this._authService.isLogg()) {
             this.buketService.getOrders(this._authService.getUserId()).subscribe((Order: Order[]) => {
-                this.Orders = Order;
+                if (Order[0] != null) {
+                    this.Orders = Order
+                    this.IsHaveOrders = "Have";
+                } else {
+                    this.IsHaveOrders = "Doesn`t have";
+                }
+                
             })
         }
     }
     OnOrders(){
         this.IsOn = !this.IsOn;
+        this.GetListOrder();
     }
     BuyOrders() {
         this.route.navigate(['confirmorder']);

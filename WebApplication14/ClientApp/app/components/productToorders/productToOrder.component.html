@@ -2,8 +2,7 @@
 
 <div *ngIf="IsOn" class="bucket_on">
     <p *ngIf="!Orders">Loading....</p>
-    <div *ngIf="Orders">
-
+    <div *ngIf="IsHaveOrders=='Have'">
         <table>
             <tbody>
                 <tr><th>{{ 'First name'|translate}}</th><th></th><th>{{"Country"|translate}}</th><th>{{'Category'|translate}}</th><th>{{'Price'|translate}}</th></tr>
@@ -11,9 +10,13 @@
             </tbody>
         </table>
         <button (click)="BuyOrders()"> Buy</button>
-        <button (click)="OnOrders()">Close</button>
     </div>
+    <div *ngIf="IsHaveOrders=='Doesn`t have'">
+        <p> You doesn`t have Orders</p>
+    </div>
+    
+    <button (click)="OnOrders()">Close</button>
 </div>
-<div *ngIf="!IsOn" class="bucket_of">
-    <button (click)="OnOrders()" class="bucket_of_button">'Bucket' </button>
-</div>
+    <div *ngIf="!IsOn" class="bucket_of">
+        <button (click)="OnOrders()" class="bucket_of_button">'Bucket' </button>
+    </div>

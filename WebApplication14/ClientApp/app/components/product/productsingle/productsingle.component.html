@@ -4,7 +4,7 @@
     {{country}}
     {{price}}
     <img [src]="path" height="400px" width="300px"/>
-    <input type="number" name="count" [(ngModel)] = "count" required/>
+    <input type="number" name="count" [(ngModel)] = "count"  placeholder="Count"required/>
     <button (click)=" AddProductToBucket()">BUY</button>
 </div>
 <div *ngIf="!name">
