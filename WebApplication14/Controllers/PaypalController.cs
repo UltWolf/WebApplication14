@@ -53,7 +53,7 @@ namespace WebApplication14.Controllers
 
             PaymentCreateRequest request = new PaymentCreateRequest();
             request.RequestBody(payment);
-            var path = CreateExcelOrder.Create(_context.Orders.Where(m => m.UserId == id).ToList(), id,_environment);
+            var path = CreateExcelOrder.Create(_context.Orders.Where(m => m.UserId == id).Where(m=>m.IsConfirm==false).ToList(), id,_environment);
 
             try
             {
@@ -75,6 +75,29 @@ namespace WebApplication14.Controllers
 
         }
 
+        [HttpGet("cancel")]
+        public async Task<IActionResult> Execute(string paymentId)
+        {
+            var environment = new SandboxEnvironment("Acc2-UPp-z25_Olh73h5VZB3XjR16eUKtL2lHoIc27IJn8-2f5R8-Kish229pYjzdy18KR8khHJRQO5Q", "EIb_0hbZQPAEioCGLAzVpn87zRswB7zLAoRtda06Oc4IhrDAmtGYAI2z6xYplX6TdARnsuVh2TC3tHNM");
+            var client = new PayPalHttpClient(environment);
+
+            PaymentExecuteRequest request = new PaymentExecuteRequest(paymentId);
+            await _context.Orders.Where(m => m.Paymentid == paymentId).ForEachAsync(m => m.IsConfirm = true);
+            await _context.SaveChangesAsync();
+            try
+            {
+                HttpResponse response = await client.Execute(request);
+                var statusCode = response.StatusCode;
+                Payment result = response.Result<Payment>();
+                return Redirect("cancel");
+            }
+            catch (HttpException httpException)
+            {
+                var statusCode = httpException.StatusCode;
+                var debugId = httpException.Headers.GetValues("PayPal-Debug-Id").FirstOrDefault();
+                return BadRequest(debugId);
+            }
+        }
         [HttpGet("execute-payment")]
         public async Task<IActionResult> Execute(string paymentId, string PayerId)
         {

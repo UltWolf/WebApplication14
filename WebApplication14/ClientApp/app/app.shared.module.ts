@@ -26,6 +26,7 @@ import {ReturnPayComponent} from "./components/Return_pay/return_pay.component";
 import {ConfirmorderComponent} from "./components/confirmorder/confirmorder.component";
 import { ProductListComponent } from './components/product/product-list/product-list.component';
 import { ProductSingleInListComponent } from './components/product/productsingleinlist/productsingleinlist.component';
+import {AuthenticationService} from "./components/_services/auth.services";
 
 @NgModule({
     declarations: [
@@ -71,6 +72,7 @@ import { ProductSingleInListComponent } from './components/product/productsingle
         TRANSLATION_PROVIDERS,
         TranslateService,
         AuthGuard,
+        AuthenticationService,
         EventBrokerService
     ]
 })

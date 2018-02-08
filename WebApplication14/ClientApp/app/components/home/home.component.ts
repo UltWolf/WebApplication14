@@ -4,7 +4,7 @@ import {AuthenticationService} from "../_services/auth.services";
 
 @Component({
     selector: 'home',
-    providers:[AuthenticationService,TranslateService],
+    providers:[TranslateService],
     templateUrl: './home.component.html'
 })
 export class HomeComponent {

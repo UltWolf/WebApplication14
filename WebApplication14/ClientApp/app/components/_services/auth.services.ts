@@ -35,7 +35,9 @@ export class AuthenticationService extends BaseService {
     }
         return this.http.post('/api/Account/', User).map((response) => {
             return response;
-        });
+        }).catch((error: any) => {
+            return Observable.throw(error.json().DuplicateUserName[0]  || 'server error');
+                });
        
     }
 
@@ -49,7 +51,9 @@ export class AuthenticationService extends BaseService {
             this.loggedIn = true;
             this._authNavStatusSource.next(true);
             return response;
-        });
+        }).catch((error: any) => {
+            return Observable.throw(error.json()  || 'server error');
+        });;
     }
     getToken():string {
         if (typeof window != 'undefined') {

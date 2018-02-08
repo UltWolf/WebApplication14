@@ -35,13 +35,18 @@ export class RegisterComponent implements OnInit {
         const user = new User();
         user.RegistrationModel(this.model.First_name, this.model.Last_name, this.model.email, this.model.Password, this.model.ConfirmPassword, this.model.PlaceOfBirth);
         this.authenticationService.register(user)
-            .subscribe(result => {
+            .subscribe((result) => {
+
+
                 if (result.ok == true) {
                     this.router.navigate(['/login']);
-                } else {
-                    this.error = 'Username or password is incorrect';
-                    this.loading = false;
                 }
+                this.error = result;
+                this.loading = false;
+
+            }, (err: Error) => {
+                this.error = err.message;
+                this.loading = false;
             });
     }
 }

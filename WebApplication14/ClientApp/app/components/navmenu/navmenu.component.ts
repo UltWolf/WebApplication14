@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit, OnChanges, SimpleChanges} from '@angular/core';
 import { AuthenticationService } from '../_services/auth.services';
 import { Router } from '@angular/router';
 import {TranslateService} from "../translation/translate.service";
@@ -7,13 +7,20 @@ import {TranslateService} from "../translation/translate.service";
 @Component({
     selector: 'nav-menu',
     templateUrl: './navmenu.component.html',
-    providers: [AuthenticationService],
+    providers: [],
     styleUrls: ['./navmenu.component.css']
 })
-export class NavMenuComponent implements OnInit {
-    ngOnInit(): void {
+export class NavMenuComponent implements OnInit, OnChanges {
+    ngOnChanges(changes: SimpleChanges): void {
         this.isAuth = this._authService.isLogg();
     }
+
+    ngOnInit(): void {
+        this.isAuth = this._authService.isLogg();
+
+    }
+    @Input() OnChanges:boolean;
+    @Input()
     public isAuth: boolean = false;
     public supportedLanguages: any[];
     constructor(private _authService: AuthenticationService, private router: Router) {

@@ -1,7 +1,7 @@
 <div class='container-fluid'>
     <div class='row'>
         <div class='col-sm-3'>
-            <nav-menu></nav-menu>
+            <nav-menu [isAuth] = "isAuth"></nav-menu>
         </div>
         <search></search>
         <div class="container" style="position:absolute;">
@@ -15,7 +15,7 @@
         </div>
         <OrderUser *ngIf="isAuth"></OrderUser>
         <div class='col-sm-9 body-content'style="margin-top: 100px;">
-            <router-outlet></router-outlet>
+            <router-outlet (activate) ="GetAuth()"></router-outlet>
         </div>
 
 
