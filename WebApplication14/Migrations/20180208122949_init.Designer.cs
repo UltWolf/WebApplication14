@@ -12,8 +12,8 @@ using WebApplication14.Models;
 namespace WebApplication14.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20180208095129_StringPaymentIdFromInt")]
-    partial class StringPaymentIdFromInt
+    [Migration("20180208122949_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

@@ -205,8 +205,9 @@ namespace WebApplication14.Migrations
                     DateOfOrder = table.Column<DateTime>(nullable: false),
                     IdProduct = table.Column<int>(nullable: false),
                     IsConfirm = table.Column<bool>(nullable: false),
+                    Paymentid = table.Column<string>(nullable: true),
                     ProductId = table.Column<int>(nullable: true),
-                    TotalCost = table.Column<int>(nullable: false),
+                    TotalCost = table.Column<decimal>(nullable: false),
                     UserId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
