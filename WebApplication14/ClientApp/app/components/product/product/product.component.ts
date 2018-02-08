@@ -18,7 +18,7 @@ export class ProductComponent {
     country: string;
     price: number;
     imagePost: string;
-    imageSrc: any;
+    imageSrc: any ;
     imageWidth: number = 400;
     imageHeight: number = 200;
 

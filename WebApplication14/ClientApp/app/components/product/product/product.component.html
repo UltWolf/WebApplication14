@@ -49,6 +49,6 @@
             <span>Выберите файл</span>
         </label>
     </div>
-    <img [src]="imageSrc" height="{{imageHeight}}" width="{{imageWidth}}">
+    <img [src]="imageSrc" height="{{imageHeight}}" width="{{imageWidth}}" *ngIf ="imageSrc">
     <button type="submit" (click)="addProduct()">New Product</button>
 </form>
