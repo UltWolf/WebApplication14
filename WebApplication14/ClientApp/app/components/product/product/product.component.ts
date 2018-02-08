@@ -6,6 +6,7 @@ import { UploadService } from '../../_services/uploading.services';
 import { AuthGuard } from '../../auth.guard';
 import { Product } from '../../_models/product';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -22,7 +23,7 @@ export class ProductComponent {
     imageWidth: number = 400;
     imageHeight: number = 200;
 
-    constructor(private productService: ProductService,  private fileService: UploadService, private sanitizer: DomSanitizer) {
+    constructor(private route:Router,private productService: ProductService,  private fileService: UploadService, private sanitizer: DomSanitizer) {
     }
 
     @ViewChild("fileInput") fileInput: any;
@@ -47,7 +48,8 @@ export class ProductComponent {
         product.price = this.price;
         if (this.imageSrc != null) {
             product.path = this.imagePost;
-            this.productService.addProduct(product).subscribe((response: string) =>{
+            this.productService.addProduct(product).subscribe((response) => {
+                this.route.navigate(['/products']);
             });
 
         }

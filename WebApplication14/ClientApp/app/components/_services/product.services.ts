@@ -25,7 +25,7 @@ export class ProductService {
     }
     addProduct(Product: Product) {
         return this.http.post(this._baseUrl +'api/Product', Product).map((response) => {
-            return response.json();
+        
 
         });
     };
