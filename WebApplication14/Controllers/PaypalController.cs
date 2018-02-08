@@ -61,7 +61,9 @@ namespace WebApplication14.Controllers
                 var statusCode = response.StatusCode;
                 Payment result = response.Result<Payment>();
                 LinkDescriptionObject approvalLink = PaypalHelpers.findApprovalLink(result.Links);
-                
+                var orders = _context.Orders.Include(m => m.Product).Where(m => m.UserId == id).Where(m => m.IsConfirm == false);
+                await orders.ForEachAsync(m => m.Paymentid = result.Id);
+                await _context.SaveChangesAsync();
                 return Ok( new ConfirmModel{ confirmPath = approvalLink.Href.ToString(), excelPath = path});
             }
             catch (HttpException httpException)
@@ -78,11 +80,14 @@ namespace WebApplication14.Controllers
         {
             var environment = new SandboxEnvironment("Acc2-UPp-z25_Olh73h5VZB3XjR16eUKtL2lHoIc27IJn8-2f5R8-Kish229pYjzdy18KR8khHJRQO5Q", "EIb_0hbZQPAEioCGLAzVpn87zRswB7zLAoRtda06Oc4IhrDAmtGYAI2z6xYplX6TdARnsuVh2TC3tHNM");
             var client = new PayPalHttpClient(environment);
+            
             PaymentExecuteRequest request = new PaymentExecuteRequest(paymentId);
             request.RequestBody(new PaymentExecution()
             {
                 PayerId = PayerId
             });
+             await _context.Orders.Where(m => m.Paymentid == paymentId).ForEachAsync(m => m.IsConfirm = true);
+            await _context.SaveChangesAsync();
             try
             {
                 HttpResponse response = await client.Execute(request);
@@ -102,7 +107,7 @@ namespace WebApplication14.Controllers
 
             //var transactionList = new List<Transaction>();
             var TransList = new List<Item>();
-            var orders = _context.Orders.Include(m => m.Product).Where(m => m.UserId == id);
+            var orders = _context.Orders.Include(m => m.Product).Where(m => m.UserId == id).Where(m=> m.IsConfirm == false);
             decimal totalPrice = 0;
             foreach (var item in orders)
             {

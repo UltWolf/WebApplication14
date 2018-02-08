@@ -23,7 +23,7 @@ namespace WebApplication14.Controllers {
 
         [HttpGet("{id}")]
         public  IEnumerable<Order>  GetOrders([FromRoute]string id) {
-            var orders = _context.Orders.Include(m=>m.Product).Where(m => m.UserId == id);
+            var orders = _context.Orders.Include(m=>m.Product).Where(m => m.UserId == id).Where(m=> m.IsConfirm== false);
             if (orders != null)
             {
                 return orders;
