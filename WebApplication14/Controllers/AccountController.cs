@@ -38,6 +38,10 @@ namespace WebApplication14.Controllers
                 return BadRequest(ModelState);
             }
 
+            if (_context.Roles.Any(r => r.Name == "Customer"))
+            {
+                await _roleManager.CreateAsync(new IdentityRole("Customer"));
+            }
             var userIdentity = _mapper.Map<AppUser>(model);
             var result = await _userManager.CreateAsync(userIdentity, model.Password);
             await  _userManager.AddToRoleAsync(userIdentity, "Customer");

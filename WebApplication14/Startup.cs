@@ -76,7 +76,7 @@ namespace WebApplication14
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env,ILoggerFactory loggerFactory, IDbInitializer dbInitializer)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env,ILoggerFactory loggerFactory)
         {
             loggerFactory.AddConsole();
             if (env.IsDevelopment())
@@ -126,7 +126,7 @@ namespace WebApplication14
                     name: "spa-fallback",
                     defaults: new { controller = "Home", action = "Index" });
             });
-            dbInitializer.Initialize();
+         
         }
     }
 }
