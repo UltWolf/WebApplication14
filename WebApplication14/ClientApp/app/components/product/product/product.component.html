@@ -51,4 +51,5 @@
     </div>
     <img [src]="imageSrc" height="{{imageHeight}}" width="{{imageWidth}}" *ngIf ="imageSrc">
     <button type="submit" (click)="addProduct()">New Product</button>
+    <p *ngIf="error">{{error}}</p>
 </form>

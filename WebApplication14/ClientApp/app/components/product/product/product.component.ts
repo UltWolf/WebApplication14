@@ -22,6 +22,7 @@ export class ProductComponent {
     imageSrc: any ;
     imageWidth: number = 400;
     imageHeight: number = 200;
+    error: string;
 
     constructor(private route:Router,private productService: ProductService,  private fileService: UploadService, private sanitizer: DomSanitizer) {
     }
@@ -46,12 +47,13 @@ export class ProductComponent {
         product.country = this.country;
         product.name = this.name;
         product.price = this.price;
-        if (this.imageSrc != null) {
+        if (this.imageSrc != null && product.category != null && product.country != null && product.name != null && product.price != null) {
             product.path = this.imagePost;
             this.productService.addProduct(product).subscribe((response) => {
                 this.route.navigate(['/products']);
             });
-
+        } else {
+            this.error = "Please put in all your fields info";
         }
     }
 
