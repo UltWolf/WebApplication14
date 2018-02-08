@@ -70,7 +70,7 @@ namespace WebApplication14.Controllers
             {
                 var statusCode = httpException.StatusCode;
                 var debugId = httpException.Headers.GetValues("PayPal-Debug-Id").FirstOrDefault();
-                return BadRequest(debugId);
+                return NoContent();
             }
 
         }

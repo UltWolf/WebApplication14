@@ -17,34 +17,39 @@ import {AuthenticationService} from "../_services/auth.services";
     providers: [BuketService, AuthenticationService],
     templateUrl: './confirmorder.component.html',
 })
-export class ConfirmorderComponent implements OnInit{
-    orders:Order[];
+export class ConfirmorderComponent implements OnInit {
+    orders: Order[];
     confirmLink: string;
     pathExcel: string;
+    empty: boolean = true;
 
-
-    constructor(private _buketService: BuketService,private  _authService:AuthenticationService) {
+    constructor(private _buketService: BuketService, private _authService: AuthenticationService) {
     }
 
-    ngOnInit(){
+    ngOnInit() {
         this.GetOrders();
         this.GetListOrders();
     }
-    GetOrders(){
-        this._buketService.getOrders(this._authService.getUserId()).subscribe((Orders)=>
-            {
-                this.orders = Orders;
-            }
-        )
+    GetOrders() {
+        this._buketService.getOrders(this._authService.getUserId()).subscribe((Orders) => {
+            this.orders = Orders;
         }
-    GetListOrders(){
-        this._buketService.getOrdersConfirm(this._authService.getUserId()).subscribe((href)=>
-        {
-            this.confirmLink = href.confirmPath;
-            this.pathExcel = href.excelPath;
-            }
         )
-
     }
+    GetListOrders() {
+        this._buketService.getOrdersConfirm(this._authService.getUserId()).subscribe((href) => {
+            if (href != null) {
+                this.confirmLink = href.confirmPath;
+                this.pathExcel = href.excelPath;
+                this.empty = false;
+            } else {
+                this.empty = true;
+            }
 
+        })
+    }
+        
+
+    
 }
+

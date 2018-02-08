@@ -22,13 +22,13 @@ namespace WebApplication14.Controllers {
 
 
         [HttpGet("{id}")]
-        public  IEnumerable<Order>  GetOrders([FromRoute]string id) {
+        public   IActionResult   GetOrders([FromRoute]string id) {
             var orders = _context.Orders.Include(m=>m.Product).Where(m => m.UserId == id).Where(m=> m.IsConfirm== false);
             if (orders != null)
             {
-                return orders;
+                return Ok(orders);
             }
-            return null;
+            return NoContent();
         }
         [HttpPost("update/{id}")]
         public async Task<IEnumerable<Order>> ChangeOrder([FromRoute]int id,[FromBody] OrderModel model)

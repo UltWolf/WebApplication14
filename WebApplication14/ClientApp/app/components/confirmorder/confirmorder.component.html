@@ -1,29 +1,31 @@
 <p>Confirm Pay</p>
 <div *ngIf="orders">
-    <table>
-        <tbody>
-            <tr><th>{{ 'First name'|translate}}</th><th></th><th>{{"Country"|translate}}</th><th>{{'Category'|translate}}</th><th>{{'Price'|translate}}</th></tr>
-            <tr *ngFor="let order of orders">
-                <td> {{order.product.name}}</td>
-                <td> <img src="{{order.product.path }}" width="40px" height="50px" /></td>
-                <td> {{order.product.country}}</td>
-                <td> {{order.product.category}}</td>
-                <td> {{order.Count}}</td>
+    <div *ngIf="!empty">
+        <table>
+            <tbody>
+                <tr><th>{{ 'First name'|translate}}</th><th></th><th>{{"Country"|translate}}</th><th>{{'Category'|translate}}</th><th>{{'Price'|translate}}</th></tr>
+                <tr *ngFor="let order of orders">
+                    <td> {{order.product.name}}</td>
+                    <td> <img src="{{order.product.path }}" width="40px" height="50px" /></td>
+                    <td> {{order.product.country}}</td>
+                    <td> {{order.product.category}}</td>
+                    <td> {{order.Count}}</td>
 
-                <td>
-                    {{order.product.price}}
-                    {{order.total_price}}
-                </td>
-            </tr>
+                    <td>
+                        {{order.product.price}}
+                        {{order.total_price}}
+                    </td>
+                </tr>
 
-        </tbody>
-    </table>
-    <div *ngIf="confirmLink">
-        <a href="{{confirmLink}}"> Confirm Pay </a>
-        <a href="{{pathExcel}}">Excel</a>
+            </tbody>
+        </table>
+        <div *ngIf="confirmLink">
+            <a href="{{confirmLink}}"> Confirm Pay </a>
+            <a href="{{pathExcel}}">Excel</a>
+        </div>
+        <div *ngIf="!confirmLink">
+            <p> please wait, your transactions will be created coming soon</p>
+        </div>
     </div>
-    <div *ngIf="!confirmLink">
-       <p> please wait, your transactions will be created coming soon</p>
-    </div>
-
 </div>
+<div *ngIf="empty">sorry, but you havent any orders</div>
