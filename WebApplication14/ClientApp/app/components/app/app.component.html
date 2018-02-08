@@ -4,7 +4,7 @@
             <nav-menu></nav-menu>
         </div>
         <search></search>
-        <div class="container">
+        <div class="container" style="position:absolute;">
             <div class="btn-group" style="margin-left:550px;position:absolute">
                 <button *ngFor="let lang of supportedLanguages"
                         (click)="selectLang(lang.value)"
@@ -14,7 +14,7 @@
             </div>
         </div>
         <OrderUser *ngIf="isAuth"></OrderUser>
-        <div class='col-sm-9 body-content'>
+        <div class='col-sm-9 body-content'style="margin-top: 100px;">
             <router-outlet></router-outlet>
         </div>
 
