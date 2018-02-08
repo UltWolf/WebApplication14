@@ -39,9 +39,9 @@
                     </a>
                 </li>
              
-                <li [routerLinkActive]="['link-active']">
+                <li [routerLinkActive]="['link-active']"  *ngIf="isAuth>
                     <a [routerLink]="['/confirmorder']">
-                        <span class='glyphicon glyphicon-home'></span>Buy
+                        <span class='glyphicon glyphicon-home'></span>{{ 'Buy' | translate }}
                     </a>
                 </li>
                 <li *ngIf="isAuth">

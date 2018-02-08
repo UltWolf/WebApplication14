@@ -4,13 +4,8 @@
             <nav-menu></nav-menu>
         </div>
         <search></search>
-        <OrderUser *ngIf="isAuth"></OrderUser>
-        <div class='col-sm-9 body-content'>
-            <router-outlet></router-outlet>
-        </div>
-
         <div class="container">
-            <div class="btn-group" style="margin-left:700px">
+            <div class="btn-group" style="margin-left:550px;position:absolute">
                 <button *ngFor="let lang of supportedLanguages"
                         (click)="selectLang(lang.value)"
                         class="btn btn-default" [class.btn-primary]="isCurrentLang(lang.value)">
@@ -18,5 +13,11 @@
                 </button>
             </div>
         </div>
+        <OrderUser *ngIf="isAuth"></OrderUser>
+        <div class='col-sm-9 body-content'>
+            <router-outlet></router-outlet>
+        </div>
+
+
     </div>
 </div>

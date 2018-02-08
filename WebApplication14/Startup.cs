@@ -44,7 +44,7 @@ namespace WebApplication14
                 options.SigningCredentials = new SigningCredentials(_signingKey, SecurityAlgorithms.HmacSha256);
             });
 
-            services.AddIdentity<ApplicationUser, IdentityRole>(o =>
+            services.AddIdentity<AppUser, IdentityRole>(o =>
             {
                 o.Password.RequireDigit = false;
 
@@ -99,7 +99,7 @@ namespace WebApplication14
             //    ClientId = "",
             //    ClientSecret = ""
             //});
-            dbInitializer.Initialize();
+            
             var jwtAppSettingOptions = Configuration.GetSection(nameof(JwtIssuerOptions));
             var tokenValidationParameters = new TokenValidationParameters
             {
@@ -126,6 +126,7 @@ namespace WebApplication14
                     name: "spa-fallback",
                     defaults: new { controller = "Home", action = "Index" });
             });
+            dbInitializer.Initialize();
         }
     }
 }

@@ -16,11 +16,12 @@ namespace WebApplication14.Controllers
     [Route("api/Account")]
     public class AccountController : Controller
     {
-        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly UserManager<AppUser> _userManager;
         private readonly ApplicationContext _context;
         private readonly IMapper _mapper;
+        private readonly RoleManager<IdentityRole> _roleManager;
 
-        public AccountController(UserManager<ApplicationUser> userManager, ApplicationContext context, IMapper mapper)
+        public AccountController(UserManager<AppUser> userManager, ApplicationContext context, IMapper mapper)
         {
             _userManager = userManager;
             _context = context;
@@ -30,12 +31,13 @@ namespace WebApplication14.Controllers
         [HttpPost]
         public async Task<IActionResult> Post([FromBody]RegisterModel model)
         {
+            DbInitializer db = new DbInitializer(_context,_userManager,_roleManager,_mapper);
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var userIdentity = _mapper.Map<ApplicationUser>(model);
+            var userIdentity = _mapper.Map<AppUser>(model);
             var result = await _userManager.CreateAsync(userIdentity, model.Password);
             await  _userManager.AddToRoleAsync(userIdentity, "Customer");
 

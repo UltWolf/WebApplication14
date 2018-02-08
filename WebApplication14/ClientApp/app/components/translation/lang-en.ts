@@ -21,5 +21,6 @@ export const LANG_EN_TRANS = {
     'Password':'Password',
     'Sign in':'Sign in',
     'Sign up':'Sign up',
-    'Log Out':"Log out"
+    'Log Out': "Log out",
+    'Buy':'Buy'
 };

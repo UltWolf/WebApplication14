@@ -13,32 +13,33 @@ namespace WebApplication14.Services
     {
 
         private readonly ApplicationContext _context;
-        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly UserManager<AppUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly IMapper _mapper;
 
         public DbInitializer(
             ApplicationContext context,
-            UserManager<ApplicationUser> userManager,
-            RoleManager<IdentityRole> roleManager)
+            UserManager<AppUser> userManager,
+            RoleManager<IdentityRole> roleManager,IMapper mapper)
         {
             _context = context;
             _userManager = userManager;
             _roleManager = roleManager;
+            _mapper = mapper;
         }
 
         public async void Initialize()
         {
             _context.Database.EnsureCreated();
 
-           
             if (_context.Roles.Any(r => r.Name == "Admin")) return;
 
             await _roleManager.CreateAsync(new IdentityRole("Admin"));
-            
-            string user = "admin3@gmail.com";
-            string password = "qwerty1234";
-            await _userManager.CreateAsync(new ApplicationUser { UserName = user, Email = user, EmailConfirmed = true }, password);
-            await _userManager.AddToRoleAsync(await _userManager.FindByNameAsync(user), "Admin");
+            var userIdentity = _mapper.Map<AppUser>(new RegisterModel() { Email = "admin5@gmail.com", First_name = "Vita", Last_name = "Chubenko", Password = "qwerty1234", ConfirmPassword = "qwerty1234", PlaceOfBirth = "Cherkassy" ,Year = DateTime.Now});
+            var result = await _userManager.CreateAsync(userIdentity, "qwerty1234");
+            await _userManager.AddToRoleAsync(userIdentity, "Admin");
+            _context.Customers.Add(new Customer { IdentityId = userIdentity.Id, Location = "Cherkassy" });
+            _context.SaveChanges();
         }
     }
     }

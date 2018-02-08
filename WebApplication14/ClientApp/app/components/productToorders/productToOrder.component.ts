@@ -15,14 +15,11 @@ import { Router } from '@angular/router';
 })
 export class ProductToOrderComponent implements OnInit{
 
-    Orders:Order[];
+    Orders:Order[] = [];
     IsOn: boolean = false;
     totalPrice: number = 0;
     constructor(private route:Router,private buketService: BuketService,private _authService:AuthenticationService) {
-        this.GetListOrder();
-
-      
-        
+   
     }
 
     ngOnInit(): void{

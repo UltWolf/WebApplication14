@@ -22,12 +22,12 @@ namespace WebApplication14.Controllers
     [Route("api/Auth")]
     public class AuthController:Controller
     {
-        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly UserManager<AppUser> _userManager;
         private readonly IJwtFactory _jwtFactory;
         private readonly JsonSerializerSettings _serializerSettings;
         private readonly JwtIssuerOptions _jwtOptions;
         private readonly RoleManager<IdentityRole>_roleManager;
-        public AuthController(RoleManager<IdentityRole> roleManager,UserManager<ApplicationUser> userManager, IJwtFactory jwtFactory, IOptions<JwtIssuerOptions> jwtOptions)
+        public AuthController(RoleManager<IdentityRole> roleManager,UserManager<AppUser> userManager, IJwtFactory jwtFactory, IOptions<JwtIssuerOptions> jwtOptions)
         {
             _roleManager = roleManager;
             _userManager = userManager;

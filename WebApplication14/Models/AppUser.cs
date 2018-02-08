@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WebApplication14.Models
 {
-    public class ApplicationUser:IdentityUser
+    public class AppUser:IdentityUser
     {
             public string FirstName { get; set; }
             public string LastName { get; set; }
