@@ -42,7 +42,7 @@ namespace WebApplication14.Controllers
                     source = _context.Products.OrderByDescending(m => m.Name);
                 }
             }else if(sortModel.Parametre == "Category") {
-                if (sortModel.variantSort == 1)
+                if (sortModel.      variantSort == 1)
                 {
                     source = _context.Products.OrderBy(m => m.Category);
                 }

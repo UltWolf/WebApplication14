@@ -21,11 +21,12 @@ namespace WebApplication14.Controllers
         private readonly IMapper _mapper;
         private readonly RoleManager<IdentityRole> _roleManager;
 
-        public AccountController(UserManager<AppUser> userManager, ApplicationContext context, IMapper mapper)
+        public AccountController(UserManager<AppUser> userManager, ApplicationContext context, IMapper mapper,RoleManager<IdentityRole> manager)
         {
             _userManager = userManager;
             _context = context;
             _mapper = mapper;
+            _roleManager = manager;
         }
 
         [HttpPost]
