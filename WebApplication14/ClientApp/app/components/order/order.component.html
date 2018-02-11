@@ -1,11 +1,15 @@
+<tr><th>{{ 'First name'|translate}}</th><th></th><th>{{"Country"|translate}}</th><th>{{'Category'|translate}}</th><th>{{'Price'|translate}}</th><th>{{"Count"|translate}}</th><th></th></tr>
 <td> {{order.product.name}}</td>
 <td> <img src="{{order.product.path }}" width="40px" height="50px" /></td>
 <td> {{order.product.country}}</td>
 <td> {{order.product.category}}</td>
-<td> {{order.Count}}</td>
 
 <td>
-    {{order.product.price}}    <input type="number" name="count" [(ngModel)]="count" (change)="ChangeCount()" required /> {{totalprice}}
+    {{order.product.price}}  
+    </td>
+    <td>  <input type="number" name="count" [(ngModel)]="count" (change)="ChangeCount()" required /> {{totalprice}}
 </td>
-<button (click)="Delete()">delete</button>
+<td>
+<span class="glyphicon glyphicon-remove" style="color:orange;" (click)="Delete()"></span>
+</td>
 

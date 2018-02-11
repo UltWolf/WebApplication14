@@ -1,19 +1,17 @@
-<input style="position:absolute;margin-left: 350px;
-z-index: 250;" type="text" (keyup)="search()" [(ngModel)]="name">
-<div style="position:absolute;margin-left: 650px;width: 450px;z-index :120;position: absolute;
-margin-left: 680px;
-width: 450px;
+<span class="glyphicon glyphicon-search" style="color:orange;margin-right: 20px;"></span><input style="" type="text" (keyup)="search()" [(ngModel)]="name" Placeholder="Search">
+<div style="position:absolute;width: 450px;z-index :120;
 z-index: 120;
 margin-top: 30px;
-background: rgba(255,255,255,0.8);
+background: rgb(128, 9, 248);
+color: orange;
 padding: 25px;
 border: black solid 2px;" *ngIf="product">
-    <ul *ngFor="let prod of product">
+    <ul *ngFor="let prod of product" style="float: left;">
         <li><img src="{{prod.path}}" width="20px" height="20px" /></li>
         <li style="text-decoration:none;">{{prod.category}} </li>
         <li>{{prod.name}} </li>
         <li>{{prod.price}} </li>
         <li>{{prod.country}} </li>
-        <a href="product/{{prod.productId}}">Watch full</a>
+        <a href="product/{{prod.productId}}">Watch full</a><br>
     </ul>
 </div>

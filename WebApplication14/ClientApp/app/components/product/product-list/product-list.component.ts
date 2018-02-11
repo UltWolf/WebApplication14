@@ -16,29 +16,26 @@ import { sortModel } from '../../_models/SortModel';
 
 @Component({
     selector: 'list-products',
+    styleUrls:['product-list.component.css'],
     providers: [ProductService, UploadService, PagerService],
     templateUrl: './product-list.component.html',
 })
 export class ProductListComponent implements OnInit{
     products: Product[];
-    parametres = [
-        { id: 1, name: "Name" },
-        { id: 2, name: "Category" },
-        { id: 3, name: "Country" },
-        { id: 4, name: "Price" },
-    ];
-    sortedValue = [
-        { id: 1, name: "+" },
-        { id: 0, name: "-" }
+    previos_name: string;
+    parametres: string[] =
+    ["Name",
+        "Category",
+        "Country",
+        "Price"
     ]
-    selectedValue = this.parametres[0];
-    selectedValueSorted = this.sortedValue[0];
   constructor(private paginator:PagerService, private productService: ProductService,private route:ActivatedRoute, private fileService: UploadService, private sanitizer: DomSanitizer) {
 
     }
 
   totalpages: number;
   pagenumber: number;
+  variant_sort: boolean;
   pages: number[] =  [];
   hasPrevios: boolean;
   hasNext: boolean;
@@ -49,8 +46,8 @@ export class ProductListComponent implements OnInit{
     SetPage(numberpage: number): void{
         let model: sortModel = new sortModel();
         model.numberPager = numberpage;
-        model.parametre = this.selectedValue.name || name;
-        model.variantSort = this.selectedValueSorted.id;
+        model.parametre = this.previos_name || "Name";
+        model.variantSort = this.variant_sort;
             this.productService.getProducts(model).subscribe((res: any) => {
                 this.totalpages = res.pgm.totalPages;
                 this.pagenumber = res.pgm.pageNumber;
@@ -63,11 +60,18 @@ export class ProductListComponent implements OnInit{
                 window.scrollTo(0, 0);
         })
 }
-    ChangeParametres() {
+   
+    ChangeParametre(name:string){
+        console.log(name);
         let model: sortModel = new sortModel();
         model.numberPager = this.pagenumber;
-        model.parametre = this.selectedValue.name || name;
-        model.variantSort = this.selectedValueSorted.id;
+        model.parametre = name;
+        if (name == this.previos_name) {
+            model.variantSort = !model.variantSort;
+        } else {
+            model.variantSort = this.variant_sort;
+            this.previos_name = name;
+        }
         this.productService.getProducts(model).subscribe((res: any) => {
             this.totalpages = res.pgm.totalPages;
             this.pagenumber = res.pgm.pageNumber;
@@ -83,8 +87,8 @@ export class ProductListComponent implements OnInit{
     GetListProduct() {
         let model: sortModel = new sortModel();
         model.numberPager = 1;
-        model.parametre = "Name";
-        model.variantSort = this.selectedValueSorted.id;
+        model.parametre = this.previos_name||"Name";
+        model.variantSort = this.variant_sort;
         this.productService.getProducts(model).subscribe((res: any) => {  
             this.totalpages = res.pgm.totalPages;
             this.pagenumber = res.pgm.pageNumber;

@@ -33,7 +33,7 @@ namespace WebApplication14.Controllers
             IQueryable<Product> source;
             List<Product> items;
             if (sortModel.Parametre == "Name") {
-                if (sortModel.variantSort == 1)
+                if (sortModel.variantSort)
                 {
                     source = _context.Products.OrderBy(m => m.Name);
                 }
@@ -42,7 +42,7 @@ namespace WebApplication14.Controllers
                     source = _context.Products.OrderByDescending(m => m.Name);
                 }
             }else if(sortModel.Parametre == "Category") {
-                if (sortModel.      variantSort == 1)
+                if (sortModel.variantSort)
                 {
                     source = _context.Products.OrderBy(m => m.Category);
                 }
@@ -52,7 +52,7 @@ namespace WebApplication14.Controllers
                 }
             }
             else if(sortModel.Parametre == "Country")
-            {if (sortModel.variantSort == 1)
+            {if (sortModel.variantSort)
                 {
                     source = _context.Products.OrderBy(m => m.Country);
                 }
@@ -63,7 +63,7 @@ namespace WebApplication14.Controllers
             }
             else
             {
-                if (sortModel.variantSort == 1)
+                if (sortModel.variantSort)
                 {
                     source = _context.Products.OrderBy(m => m.Price);
                 }

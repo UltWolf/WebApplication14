@@ -1,56 +1,67 @@
-<div class='main-nav'>
-    <div class='navbar navbar-inverse'>
-        <div class='navbar-header'>
-            <button type='button' class='navbar-toggle' data-toggle='collapse' data-target='.navbar-collapse'>
-                <span class='sr-only'>Toggle navigation</span>
-                <span class='icon-bar'></span>
-                <span class='icon-bar'></span>
-                <span class='icon-bar'></span>
-            </button>
-            <a class='navbar-brand' [routerLink]="['/home']">Romfy </a>
-        </div>
-        <div class='clearfix'></div>
-        <div class='navbar-collapse collapse'>
-            <ul class='nav navbar-nav'>
-                <li [routerLinkActive]="['link-active']">
-                    <a [routerLink]="['/home']">
-                        <span class='glyphicon glyphicon-home'></span> {{ 'Home' | translate }}
-                    </a>
-                </li>
-                <li [routerLinkActive]="['link-active']">
+
+
+ <ul class="container_menu" *ngIf="!IsOn">
+   
+     <div class="menu_component">
+              <li [routerLinkActive]="['link-active']">
                     <a [routerLink]="['/products']">
-                        <span class='glyphicon glyphicon-home'></span> {{ 'List' | translate }}
+                        <span class='glyphicon glyphicon-list-alt' style= "border: 2px orange solid;
+padding: 10px;
+border-radius: 30px;"></span> {{ 'List' | translate }}
                     </a>
                 </li>
-                <li [routerLinkActive]="['link-active']" *ngIf="isAuth">
-                    <a [routerLink]="['/product/add']">
-                        <span class='glyphicon glyphicon-home'></span>{{ 'Product Add' | translate }}
-                    </a>
-                </li>
-
-                <li [routerLinkActive]="['link-active']" *ngIf="!isAuth">
-                    <a [routerLink]="['/login']">
-                        <span class='glyphicon glyphicon-home'></span>{{ 'Sign in' | translate }}
-                    </a>
-                </li>
-                <li [routerLinkActive]="['link-active']" *ngIf="!isAuth">
-                    <a [routerLink]="['/register']">
-                        <span class='glyphicon glyphicon-home'></span>{{ 'Sign up' | translate }}
-                    </a>
-                </li>
-             
-                <li [routerLinkActive]="['link-active']" *ngIf="isAuth" >
-                    <a [routerLink]="['/confirmorder']">
-                        <span class='glyphicon glyphicon-home'></span>{{ 'Buy' | translate }}
-                    </a>
-                </li>
-                <li *ngIf="isAuth">
-                    <a (click)="logout()"  [routerLink]="['/login']">
-                        <span class='glyphicon glyphicon-home'></span>{{ 'Log Out' | translate }}
-                    </a>
-                </li>
-
-            </ul>
-        </div>
     </div>
+     <div class="menu_component" *ngIf="isAuth">
+              <li [routerLinkActive]="['link-active']"  style = "color:orange" (click) = "logout()">
+           
+                        <span class='glyphicon glyphicon-off' style="border: 2px orange solid;
+padding: 10px;
+border-radius: 30px;"></span> {{ 'Sign Out' | translate }}
+                    
+                </li>
+    </div>
+     <div class="menu_component" *ngIf="!isAuth">
+              <li [routerLinkActive]="['link-active']">
+                    <a [routerLink]="['/login']">
+                        <span class='glyphicon glyphicon-user' style="border: 2px orange solid;
+padding: 10px;
+border-radius: 30px;"></span> {{ 'Sign in' | translate }}
+                    </a>
+                </li>
+    </div>
+     <div class="menu_component" *ngIf="!isAuth">
+              <li [routerLinkActive]="['link-active']">
+                    <a [routerLink]="['/register']">
+                        <span class='glyphicon glyphicon-lock' style="border: 2px orange solid;
+padding: 10px;
+border-radius: 30px;"></span> {{ 'Sign up' | translate }}
+                    </a>
+                </li>
+    </div>
+   <div class="menu_component">
+              <li >
+<OrderUser *ngIf="isAuth"></OrderUser>
+          
+                </li>
+    </div>
+    <div class="menu_component">
+              <li >
+              <search></search>
+                           </li>
+    </div>
+     <div class="btn-group" >
+                <button *ngFor="let lang of supportedLanguages"
+                        (click)="selectLang(lang.value)"
+                        class="lang_btn" [class.lang_btn_sc]="isCurrentLang(lang.value)">
+                    {{ lang.display }}
+                </button>
+            </div>
+
+<div class='button_on' *ngIf="">
+    <span class="glyphicon glyphicon-chevron-up" (click) ="Turn()" value="On"> </span> 
 </div>
+</ul>
+
+
+
+           

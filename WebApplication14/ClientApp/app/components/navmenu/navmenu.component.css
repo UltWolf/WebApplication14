@@ -1,59 +1,39 @@
-li .glyphicon {
-    margin-right: 10px;
+ul{
+    margin-top: 0;
+margin-bottom: 10px;
+flex: row;
+display: flex;
+flex-direction: row;
+justify-content:center;
+width: 1366px;
+background: #520b99e6;
+padding: 15px;
+border-width: 1px 0px 1px 0px;
+border-style: solid;
+border-radius: 2px 2px 90px 2px;
+-webkit-box-shadow: 0px 9px 13px -2px rgba(0,0,0,0.75);
+-moz-box-shadow: 0px 9px 13px -2px rgba(0,0,0,0.75);
+box-shadow: 0px 9px 13px -2px rgba(0,0,0,0.75);
+position: fixed;
+z-index: 2;
+}
+li{
+    list-style: none;
+    margin: 0 50px 0 0;
+    padding: 10px;
+}
+a{
+    color: orange;
+}
+.lang_btn{
+    color: #eccbcb;
+    background-color: #639;
+    border-color: #f9790c;
+}
+.lang_btn_sc{
+    color: #fff;
+    background-color: #f9790c;
+    border-color: #f37d0b;
 }
 
-/* Highlighting rules for nav menu items */
-li.link-active a,
-li.link-active a:hover,
-li.link-active a:focus {
-    background-color: #4189C7;
-    color: white;
-}
 
-/* Keep the nav menu independent of scrolling and on top of other items */
-.main-nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1;
-}
-
-@media (min-width: 768px) {
-    /* On small screens, convert the nav menu to a vertical sidebar */
-    .main-nav {
-        height: 100%;
-        width: calc(25% - 20px);
-    }
-    .navbar {
-        border-radius: 0px;
-        border-width: 0px;
-        height: 100%;
-    }
-    .navbar-header {
-        float: none;
-    }
-    .navbar-collapse {
-        border-top: 1px solid #444;
-        padding: 0px;
-    }
-    .navbar ul {
-        float: none;
-    }
-    .navbar li {
-        float: none;
-        font-size: 15px;
-        margin: 6px;
-    }
-    .navbar li a {
-        padding: 10px 16px;
-        border-radius: 4px;
-    }
-    .navbar a {
-        /* If a menu item's text is too long, truncate it */
-        width: 100%;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-}

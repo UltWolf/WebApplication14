@@ -3,12 +3,15 @@ import {Component, Input, OnInit, OnDestroy} from "@angular/core";
 import {DomSanitizer} from "@angular/platform-browser";
 import {TranslateService} from "../../translation";
 import { EventBrokerService, IEventListener } from "../../_services/event.services";
+import { ViewEncapsulation } from '@angular/core';
 
 
 @Component({
     selector: "productsingleinlist",
-    providers: [EventBrokerService],
-    templateUrl:"productsingleinlist.component.html"
+    providers: [EventBrokerService],    
+    styleUrls:['productsingleinlist.component.css'],
+    templateUrl:"productsingleinlist.component.html",
+    
 
 })
 export class ProductSingleInListComponent implements  OnInit,OnDestroy{

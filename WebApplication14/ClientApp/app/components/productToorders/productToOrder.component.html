@@ -5,18 +5,30 @@
     <div *ngIf="IsHaveOrders=='Have'">
         <table>
             <tbody>
-                <tr><th>{{ 'First name'|translate}}</th><th></th><th>{{"Country"|translate}}</th><th>{{'Category'|translate}}</th><th>{{'Price'|translate}}</th></tr>
-                <order *ngFor="let order of Orders" [order]="order"></order>
+                
+                <order *ngFor="let order of Orders" [order]="order">
+                    <tr><th>{{ 'First name'|translate}}</th><th></th><th>{{"Country"|translate}}</th><th>{{'Category'|translate}}</th><th>{{'Price'|translate}}</th></tr>
+                </order>
             </tbody>
         </table>
-        <button (click)="BuyOrders()"> Buy</button>
+        <span class="glyphicon glyphicon-ok" (click)="BuyOrders()"style="margin-left: -30px;
+
+margin-top: 155px;
+
+position: absolute;"></span>
     </div>
     <div *ngIf="IsHaveOrders=='Doesn`t have'">
-        <p> You doesn`t have Orders</p>
+        <p style='text-align:center;'> You doesn`t have Orders</p>
     </div>
     
-    <button (click)="OnOrders()">Close</button>
+    <span class="glyphicon glyphicon-remove" style="color:orange;margin-top: 15px;
+
+position: absolute;
+
+right: 20px;" (click)="OnOrders()"></span>
 </div>
-    <div *ngIf="!IsOn" class="bucket_of">
-        <button (click)="OnOrders()" class="bucket_of_button">'Bucket' </button>
+    <div  class="bucket_of" >
+        <span class="glyphicon glyphicon-shopping-cart" (click)="OnOrders()" style="border: 2px orange solid;
+padding: 10px;
+border-radius: 30px;"></span>{{ 'Bucket' | translate}}
     </div>

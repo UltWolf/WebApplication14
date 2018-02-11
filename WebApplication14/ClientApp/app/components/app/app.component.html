@@ -1,20 +1,12 @@
-<div class='container-fluid'>
+<div class='container-fluid' style="background: #8009f8;;">
     <div class='row'>
         <div class='col-sm-3'>
             <nav-menu [isAuth] = "isAuth"></nav-menu>
         </div>
-        <search></search>
-        <div class="container" style="position:absolute;">
-            <div class="btn-group" style="margin-left:550px;position:absolute">
-                <button *ngFor="let lang of supportedLanguages"
-                        (click)="selectLang(lang.value)"
-                        class="btn btn-default" [class.btn-primary]="isCurrentLang(lang.value)">
-                    {{ lang.display }}
-                </button>
-            </div>
-        </div>
-        <OrderUser *ngIf="isAuth"></OrderUser>
-        <div class='col-sm-9 body-content'style="margin-top: 100px;">
+     
+       
+        
+        <div class='col-sm-9 body-content'style="margin-top: 100px;margin-left: -130px;">
             <router-outlet (activate) ="GetAuth()"></router-outlet>
         </div>
 

@@ -13,6 +13,7 @@ import {DomSanitizer} from "@angular/platform-browser";
 
 @Component({
     selector: 'product',
+    styleUrls:['productsingle.component.css'],
     providers: [ProductService, BuketService],
     templateUrl: './productsingle.component.html',
 })

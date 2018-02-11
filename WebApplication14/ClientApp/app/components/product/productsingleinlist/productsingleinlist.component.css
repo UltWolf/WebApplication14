@@ -1,0 +1,30 @@
+.product_component{
+	margin: 63px;
+
+background: rgba(149, 144, 144, 0.9);
+padding: 20px 50px 85px 50px;
+border-radius: 20px;
+-webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.23);
+-moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.23);
+box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.23);
+border-width: 8px 0px 8px 0px;
+border-style: solid;
+border-color: black;
+color:white;
+text-shadow : 2px;
+}
+.product_component> li{
+	list-style-type: none;
+    float: left;
+}
+body{
+	background: whitesmoke;
+}
+
+img{
+	-webkit-box-shadow: 8px 7px 24px -1px rgba(0,0,0,0.81);
+-moz-box-shadow: 8px 7px 24px -1px rgba(0,0,0,0.81);
+box-shadow: 8px 7px 24px -1px rgba(0,0,0,0.81);
+border:1px black solid;
+border-radius: 100px;
+}

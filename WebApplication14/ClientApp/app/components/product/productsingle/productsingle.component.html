@@ -1,12 +1,22 @@
 ﻿
 <div *ngIf="name">
-    <h1>Information about {{name}}</h1>
-    {{country}}
-    {{price}}
+    <h1 style="
+align-content: center;
+text-align: center;
+margin: 50px;
+color: orange;
+text-shadow: 1px 1px 2px black, 0 0 1em #090604;">Information about {{name}}</h1>
+   
     <img [src]="path" height="400px" width="300px"/>
-    <input type="number" name="count" [(ngModel)] = "count"  placeholder="Count"required/>
-    <button (click)=" AddProductToBucket()">BUY</button>
+    
+     <div class="information">
+     	<li>{{country}}</li>
+        <li>{{price}}</li>
+        <input type="number" id="count_order"name="count" [(ngModel)] = "count"  placeholder="Count"required/>
+ </div>
+    
 </div>
+<button (click)=" AddProductToBucket()" class="order_add">BUY</button>
 <div *ngIf="!name">
     We don't find, please try again
 </div>

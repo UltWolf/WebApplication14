@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿
 
 namespace WebApplication14.Models.ViewModel
 {
@@ -9,6 +6,6 @@ namespace WebApplication14.Models.ViewModel
     {
         public int? NumberPager { get; set; }
         public string Parametre { get; set; }
-        public int? variantSort { get; set; }
+        public bool variantSort { get; set; }
     }
 }

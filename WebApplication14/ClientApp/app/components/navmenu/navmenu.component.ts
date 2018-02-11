@@ -11,19 +11,34 @@ import {TranslateService} from "../translation/translate.service";
     styleUrls: ['./navmenu.component.css']
 })
 export class NavMenuComponent implements OnInit, OnChanges {
+
     ngOnChanges(changes: SimpleChanges): void {
         this.isAuth = this._authService.isLogg();
     }
-
-    ngOnInit(): void {
+    IsOn:boolean = false;
+      public supportedLanguages: any[];
+    public translatedText: string;
+    
+    ngOnInit():void {
+        this.supportedLanguages = [
+            { display: 'English', value: 'en' },
+            { display: 'Русский', value: 'ru' },
+        ];
         this.isAuth = this._authService.isLogg();
+    }
 
+    isCurrentLang(lang: string) {
+        return lang === this._translate.GetLanguage();
+    }
+
+    selectLang(lang: string) {
+        this._translate.SetLanguage(lang);
     }
     @Input() OnChanges:boolean;
     @Input()
     public isAuth: boolean = false;
-    public supportedLanguages: any[];
-    constructor(private _authService: AuthenticationService, private router: Router) {
+   
+    constructor(private _authService: AuthenticationService,private _translate: TranslateService, private router: Router) {
         
         this.isAuth = this._authService.isLogg();
     }
@@ -32,5 +47,8 @@ export class NavMenuComponent implements OnInit, OnChanges {
         this._authService.logout();
         this.router.navigate(['/login']);
 
+    }
+    Turn(){
+        this.IsOn = !this.IsOn;
     }
 }
