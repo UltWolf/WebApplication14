@@ -1,8 +1,7 @@
 <div class = "product_component">
-<li><img [src]='product.path' width="130" height="150" /></li>
+<li><a href="/product/{{product.productId}}"><img [src]='product.path' width="130" height="150" /></a></li>
 <li>{{'Name'|translate}} : {{product.name}}</li>
 <li>{{'Country'|translate}} : {{product.country}}</li>
 <li>{{'Price'|translate}} : {{product.price}}</li>
 <li>{{'Category'|translate}} : {{product.category}}</li>
-<a href="/product/{{product.productId}}">Get Info</a>
 </div>

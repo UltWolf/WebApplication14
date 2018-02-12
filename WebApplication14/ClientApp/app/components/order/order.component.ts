@@ -7,6 +7,7 @@ import { AuthenticationService } from '../_services/auth.services';
 @Component({
     selector:"order",
     providers:[BuketService],
+    styleUrls:["order.component.css"],
     templateUrl:'order.component.html',
     
 })
