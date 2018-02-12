@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 
 @Component({
     providers: [ProductService, UploadService,AuthGuard],
+    styleUrls:["product.component.css"],
     templateUrl: './product.component.html',
 })
 export class ProductComponent {
@@ -19,8 +20,8 @@ export class ProductComponent {
     country: string;
     price: number;
     imagePost: string;
-    imageSrc: any ;
-    imageWidth: number = 400;
+    imageSrc: any = "cart.png";
+    imageWidth: number = 300;
     imageHeight: number = 200;
     error: string;
 

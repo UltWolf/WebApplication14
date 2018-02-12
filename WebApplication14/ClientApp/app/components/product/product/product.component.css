@@ -1,0 +1,43 @@
+.another_info{
+float: right;
+width: 400px;
+color: orange;
+}
+.photo_info{
+	position: absolute;
+margin-top: 65px;
+}
+#button_add{
+	position: absolute;
+margin-top: 400px;
+margin-left: 400px;
+background: #18052d;
+padding: 2px 15px;
+border-radius: 8px;
+border: 1px black solid;
+box-shadow: 2px 3px 2px 3px black;
+color: orange;
+text-align: center;
+}
+.file-upload{
+	pointer-events: none;
+	cursor: pointer;
+}
+.file-upload>label{
+pointer-events: none;
+	cursor: pointer;	
+}
+.file-upload{
+
+background: #18052d;
+padding: 2px 5px;
+border-radius: 8px;
+width: 120px;
+height: 25px;
+margin-left: 110px;
+margin-top: 40px;
+border: 1px black solid;
+box-shadow: 2px 3px 2px 3px black;
+color: orange;
+text-align: center;
+}

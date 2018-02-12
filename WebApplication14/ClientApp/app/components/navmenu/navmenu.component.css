@@ -5,7 +5,7 @@ flex: row;
 display: flex;
 flex-direction: row;
 justify-content:center;
-width: 1366px;
+width: 100%;
 background: rgb(48, 5, 93,0.6);
 padding: 15px;
 border-width: 1px 0px 1px 0px;

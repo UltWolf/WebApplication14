@@ -1,25 +1,32 @@
 .product-container{
 	display: flex;
 	flex-direction: row;
-justify-content: end;
+justify-content: center;
 align-items: center;
 	margin-top: 40px;
 }
+
 li{
 list-style: none;
 float: left;
 justify-items: center;
 color: orange;
 text-align: center;
-margin-left: 150px;
+margin-left: 11%;
+}
+li:first-child{
+	margin-left: 20%;
 }
 ul{
 	text-align: center;
 margin-right: auto;
 margin-left: auto;
-width: 100px;
+width:  100%;
 margin-bottom: 120px;
 position: absolute;
+}
+ul.pages{
+	padding-left: 50%;
 }
 html,
 body {

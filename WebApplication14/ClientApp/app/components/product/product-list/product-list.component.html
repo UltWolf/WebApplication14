@@ -9,14 +9,14 @@
 </div>
 </div>
 <div *ngIf="products">
-<ul style="width:980px;" *ngIf="!loading">
-<li *ngFor="let p of parametres"  (click) = "ChangeParametre(p)">{{p|translate}}</li>
+<ul  *ngIf="!loading">
+<li *ngFor="let p of parametres"  [ngStyle]="setActiveParameteStyle(p)" (click) = "ChangeParametre(p)">{{p|translate}}</li>
 </ul>
 
 <div  class = "product-container">
-    <productsingleinlist *ngFor="let product of products" [product]="product">
+    <productsingleinlist *ngFor="let product of products" [product]="product" style="width:35%">
     </productsingleinlist>
 </div>
-  <ul style="position: relative;"*ngIf="!loading"><li *ngFor ="let page of pages" (click)="SetPage(page)" style="margin-left:5px;">{{page}}</li></ul>
+  <ul class ="pages" style="position: relative;"*ngIf="!loading"><li *ngFor ="let page of pages" (click)="SetPage(page)" style="margin-left:5px;" [ngStyle]="setActiveStyle(page)">{{page}}</li></ul>
 <p>{{key}}</p>
 </div>

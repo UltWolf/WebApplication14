@@ -1,8 +1,8 @@
 .product_component{
-	margin: 63px;
+margin: 15%;
 height: 300px;
 background: rgb(43, 7, 81);
-padding: 20px 50px 85px 50px;
+padding: 5% 5% 0% 6%;
 border-radius: 20px;
 -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.23);
 -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.23);
@@ -15,7 +15,7 @@ text-shadow : 2px;
 }
 .product_component> li{
 	list-style-type: none;
-    float: left;
+   
 }
 body{
 	background: whitesmoke;
@@ -27,4 +27,7 @@ img{
 box-shadow: 8px 7px 24px -1px rgba(0,0,0,0.81);
 border:1px black solid;
 border-radius: 100px;
+width: 100%;
+
+
 }

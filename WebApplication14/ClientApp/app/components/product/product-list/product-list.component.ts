@@ -22,7 +22,7 @@ import { sortModel } from '../../_models/SortModel';
 })
 export class ProductListComponent implements OnInit{
     products: Product[];
-    previos_name: string;
+    previos_name: string = "Name";
     parametres: string[] =
     ["Name",
         "Category",
@@ -34,7 +34,7 @@ export class ProductListComponent implements OnInit{
     }
 
   totalpages: number;
-  pagenumber: number;
+  pagenumber: number = 1;
   variant_sort: boolean;
   pages: number[] =  [];
   hasPrevios: boolean;
@@ -64,7 +64,25 @@ export class ProductListComponent implements OnInit{
                 this.loading = false ;
         })
 }
-   
+    setActiveStyle(page:any) {
+        let styles:any = {};
+        if(page==this.pagenumber){
+            styles['color'] = "red";
+        }
+
+        return styles;
+    }
+    setActiveParameteStyle(p:any){
+     let styles:any = {};
+        if(p==this.previos_name){
+            styles['color'] = "red";
+            styles['font-weight'] = "bold";
+        }
+
+        return styles;   
+
+    }
+
     ChangeParametre(name:string){
         this.loading = true;
         this.products = [];

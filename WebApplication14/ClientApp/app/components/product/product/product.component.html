@@ -1,7 +1,16 @@
 
 <form ngSubmit="">
-   
-    <input type="text" name="name" [(ngModel)]="name"   required minlength ="3" maxlength = "25" #fieldName = "ngModel" autocomplete="off" placeholder="Input there name">
+<div class="photo_info">
+    <img [src]="imageSrc" height="{{imageHeight}}" width="{{imageWidth}}" *ngIf ="imageSrc">
+    <div ><label for="exampleFormControlFile1">{{"Choose the file"| translate}}</label>
+            <input #fileInput name = "file"type="file" class="inputUpload" (change)="UploadAvat($event)" class="form-control-file" id="exampleFormControlFile1">
+
+        
+    </div>
+</div>
+   <div class="another_info">
+    <label>{{"Name"|translate}}</label>
+    <input type="text" class="form-control" name="name" [(ngModel)]="name"   required minlength ="3" maxlength = "25" #fieldName = "ngModel" autocomplete="off" placeholder="Input there name">
     <div *ngIf="fieldName.errors && ( fieldName.touched)"
          class="alert alert-danger">
         <div [hidden]="!fieldName.errors.required">
@@ -13,8 +22,9 @@
         <div [hidden]="!fieldName.errors.maxlength">
             Name cannot be more than 24 characters long.
         </div>
-    </div>
-    <input type="text" name="category" [(ngModel)]="category" required minlength ="3" maxlength = "25" #categoryField = "ngModel" autocomplete="off" placeholder="Input category">
+    </div><br>
+     <label>{{"Category"|translate}}</label>
+    <input type="text" class="form-control" name="category" [(ngModel)]="category" required minlength ="3" maxlength = "25" #categoryField = "ngModel" autocomplete="off" placeholder="Input category">
     <div *ngIf="categoryField.errors && ( categoryField.touched)"
          class="alert alert-danger">
         <div [hidden]="!categoryField.errors.required">
@@ -26,8 +36,9 @@
         <div [hidden]="!categoryField.errors.maxlength">
             Category cannot be more than 24 characters long.
         </div>
-    </div>
-    <input type="text" name="price" [(ngModel)]="price" required minlength ="2" maxlength = "25" #priceField = "ngModel" autocomplete="off" placeholder="Input price">
+    </div><br>
+     <label>{{"Price"|translate}}</label>
+    <input type="text" name="price"class="form-control" [(ngModel)]="price" required minlength ="2" maxlength = "25" #priceField = "ngModel" autocomplete="off" placeholder="Input price">
     <div *ngIf="priceField.errors && ( priceField.touched)"
          class="alert alert-danger">
         <div [hidden]="!priceField.errors.required">
@@ -39,17 +50,11 @@
         <div [hidden]="!priceField.errors.maxlength">
            price cannot be more than 24 characters long.
         </div>
-    </div>
-    <input type="text" name="country" [(ngModel)]="country"  placeholder="Country">
+    </div><br>
+     <label>{{"Country"|translate}}</label>
+    <input type="text" name="country" class="form-control" [(ngModel)]="country"  placeholder="Country">
+</div>
 
-    <div class="file-upload">
-        <label>
-            <input #fileInput type="file" class="inputUpload" (change)="UploadAvat($event)" />
-
-            <span>Выберите файл</span>
-        </label>
-    </div>
-    <img [src]="imageSrc" height="{{imageHeight}}" width="{{imageWidth}}" *ngIf ="imageSrc">
-    <button type="submit" (click)="addProduct()">New Product</button>
+    <button type="submit" (click)="addProduct()" id="button_add">New Product</button>
     <p *ngIf="error">{{error}}</p>
 </form>

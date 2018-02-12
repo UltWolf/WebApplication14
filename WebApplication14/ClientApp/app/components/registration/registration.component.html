@@ -1,5 +1,5 @@
 
-    <div class="alert alert-info">
+    <div class="alert alert-info" style="text-align:center">
         <h2>{{'Register'|translate}}</h2>
         <form name="form" (ngSubmit)="f.form.valid && register()" #f="ngForm" novalidate>
             <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !First_name.valid }">
