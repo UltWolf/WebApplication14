@@ -6,7 +6,7 @@ display: flex;
 flex-direction: row;
 justify-content:center;
 width: 1366px;
-background: #520b99e6;
+background: rgb(48, 5, 93,0.6);
 padding: 15px;
 border-width: 1px 0px 1px 0px;
 border-style: solid;
@@ -27,7 +27,7 @@ a{
 }
 .lang_btn{
     color: #eccbcb;
-    background-color: #639;
+    background-color: #1a0233;
     border-color: #f9790c;
 }
 .lang_btn_sc{

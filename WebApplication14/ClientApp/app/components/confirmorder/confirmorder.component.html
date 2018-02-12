@@ -1,15 +1,25 @@
-<p>Confirm Pay</p>
+
+<p style="text-align: center;
+padding: 30px 30px 40px 30px;
+    padding-top: 30px;
+    padding-right: 30px;
+    padding-bottom: 40px;
+    padding-left: 30px;
+font-size: 40px;
+text-shadow: 1px 1px 2px black;
+color:orange;">{{"Confirm Pay"|translate}}</p>
+<div *ngIf="!loading">
 <div *ngIf="orders">
     <div *ngIf="!empty">
         <table>
             <tbody>
-                <tr><th>{{ 'First name'|translate}}</th><th></th><th>{{"Country"|translate}}</th><th>{{'Category'|translate}}</th><th>{{'Price'|translate}}</th></tr>
+                <tr><th>{{ 'First name'|translate}}</th><th></th><th>{{"Country"|translate}}</th><th>{{'Category'|translate}}</th><th>{{"Count"|translate}}</th><th>{{'Price'|translate}}</th></tr>
                 <tr *ngFor="let order of orders">
                     <td> {{order.product.name}}</td>
                     <td> <img src="{{order.product.path }}" width="40px" height="50px" /></td>
                     <td> {{order.product.country}}</td>
                     <td> {{order.product.category}}</td>
-                    <td> {{order.Count}}</td>
+                    <td> {{order.count}}</td>
 
                     <td>
                         {{order.product.price}}
@@ -20,12 +30,25 @@
             </tbody>
         </table>
         <div *ngIf="confirmLink">
-            <a href="{{confirmLink}}"> Confirm Pay </a>
-            <a href="{{pathExcel}}">Excel</a>
+            <a href="{{confirmLink}}"> <img src="/paypal.png" height="50px" width="70px" style="margin-left: 40px;"> </a>
+            <a href="{{pathExcel}}"><img src="/excel.png" height="30px" width="40px" style="float: right;
+margin-right: 120px;
+margin-top: 10px;"></a>
         </div>
+
         <div *ngIf="!confirmLink">
             <p> please wait, your transactions will be created coming soon</p>
         </div>
     </div>
 </div>
-<div *ngIf="empty">sorry, but you havent any orders</div>
+</div>
+<div *ngIf="loading" >
+<div class="blob-div">
+    <div class="blob blob-0"></div>
+<div class="blob blob-1"></div>
+<div class="blob blob-2"></div>
+<div class="blob blob-3"></div>
+<div class="blob blob-4"></div>
+<div class="blob blob-5"></div>
+</div>
+</div>

@@ -15,6 +15,7 @@ import {AuthenticationService} from "../_services/auth.services";
 
 @Component({
     providers: [BuketService, AuthenticationService],
+    styleUrls:["confirmorder.component.css"],
     templateUrl: './confirmorder.component.html',
 })
 export class ConfirmorderComponent implements OnInit {
@@ -22,11 +23,13 @@ export class ConfirmorderComponent implements OnInit {
     confirmLink: string;
     pathExcel: string;
     empty: boolean = true;
+    loading:boolean = true;
 
     constructor(private _buketService: BuketService, private _authService: AuthenticationService) {
     }
 
     ngOnInit() {
+        this.loading = true;
         this.GetOrders();
         this.GetListOrders();
     }
@@ -45,6 +48,7 @@ export class ConfirmorderComponent implements OnInit {
             } else {
                 this.empty = true;
             }
+            this.loading = false;
 
         })
     }

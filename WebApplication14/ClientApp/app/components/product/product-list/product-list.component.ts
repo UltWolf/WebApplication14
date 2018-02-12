@@ -39,11 +39,14 @@ export class ProductListComponent implements OnInit{
   pages: number[] =  [];
   hasPrevios: boolean;
   hasNext: boolean;
+  loading:boolean = false;
     key: any;
     ngOnInit(){
         this.GetListProduct();
     }
     SetPage(numberpage: number): void{
+        this.loading = true;
+        this.products.length = 0;
         let model: sortModel = new sortModel();
         model.numberPager = numberpage;
         model.parametre = this.previos_name || "Name";
@@ -58,11 +61,13 @@ export class ProductListComponent implements OnInit{
                     this.pages[i] = j;
                 }
                 window.scrollTo(0, 0);
+                this.loading = false ;
         })
 }
    
     ChangeParametre(name:string){
-        console.log(name);
+        this.loading = true;
+        this.products = [];
         let model: sortModel = new sortModel();
         model.numberPager = this.pagenumber;
         model.parametre = name;
@@ -78,13 +83,17 @@ export class ProductListComponent implements OnInit{
             this.hasPrevios = res.pgm.hasPreviousPage;
             this.hasNext = res.pgm.hasNextPage;
             this.products = res.products;
+
             for (var i = 0, j = 1; j <= this.totalpages; i++ , j++) {
                 this.pages[i] = j;
             }
             window.scrollTo(0, 0);
+            this.loading = false;
         })
     }
     GetListProduct() {
+        this.loading = true;
+
         let model: sortModel = new sortModel();
         model.numberPager = 1;
         model.parametre = this.previos_name||"Name";
@@ -97,10 +106,11 @@ export class ProductListComponent implements OnInit{
             this.products = res.products;
             for (var i = 0,j=1; j <= this.totalpages; i++,j++){
                 this.pages[i] = j;
-            }      
+            }
+            this.loading =false;      
         });
        
-        
+        this.loading =false;
         }
       
     }

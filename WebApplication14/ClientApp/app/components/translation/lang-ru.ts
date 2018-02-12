@@ -21,6 +21,8 @@ export const LANG_RU_TRANS = {
     'Password':'Пароль',
     'Sign in':"Войти",
     'Sign up':"Зарегистрироваться",
-    'Log Out': "Выйти",
+    'Sign Out': "Выйти",
+    "Count":"Количество",
+    "Confirm Pay":"Подтвердите покупку",
     'Buy':"Купить"
 };

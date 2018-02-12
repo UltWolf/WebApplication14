@@ -1,13 +1,22 @@
-<p *ngIf="!products">{{'Loading'|translate}}....</p>
-
-<ul style="width:980px;">
-<li *ngFor="let p of parametres"  (click) = "ChangeParametre(p)">{{p}}</li>
+<div *ngIf="loading" >
+<div class="blob-div">
+	<div class="blob blob-0"></div>
+<div class="blob blob-1"></div>
+<div class="blob blob-2"></div>
+<div class="blob blob-3"></div>
+<div class="blob blob-4"></div>
+<div class="blob blob-5"></div>
+</div>
+</div>
+<div *ngIf="products">
+<ul style="width:980px;" *ngIf="!loading">
+<li *ngFor="let p of parametres"  (click) = "ChangeParametre(p)">{{p|translate}}</li>
 </ul>
 
-<div *ngIf="products" class = "product-container">
-
+<div  class = "product-container">
     <productsingleinlist *ngFor="let product of products" [product]="product">
     </productsingleinlist>
 </div>
-  <ul><li *ngFor ="let page of pages" (click)="SetPage(page)" style="margin-left:5px;">{{page}}</li></ul>
+  <ul style="position: relative;"*ngIf="!loading"><li *ngFor ="let page of pages" (click)="SetPage(page)" style="margin-left:5px;">{{page}}</li></ul>
 <p>{{key}}</p>
+</div>

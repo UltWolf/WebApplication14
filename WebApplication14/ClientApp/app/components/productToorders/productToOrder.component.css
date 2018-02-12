@@ -12,16 +12,16 @@ margin-top: 80px;
 position: fixed;
 padding-bottom: 40px;
 padding-left: 40px;
-background: rgb(87, 11, 162);
+background: rgb(39, 4, 76);
 padding-top: 40px;
 color: orange;
 }
-td{
+td,th{
     margin-left:5px;
+    padding: 10px;
 }
 .bucket_of_button{
     z-index:200;
-
     position: fixed;
     margin-top: 32px;
     margin-left: 825px;
