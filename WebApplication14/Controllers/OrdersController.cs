@@ -33,7 +33,10 @@ namespace WebApplication14.Controllers {
         [HttpPost("update/{id}")]
         public async Task<IEnumerable<Order>> ChangeOrder([FromRoute]int id,[FromBody] OrderModel model)
         {
-
+            if(model.Count < 0)
+            {
+                return null;
+            }
             var order = await  _context.Orders.Include(m => m.Product).SingleOrDefaultAsync(m=> m.OrderId == id);
             if (order != null)
             {
@@ -60,6 +63,10 @@ namespace WebApplication14.Controllers {
         [HttpPost ("{id}")]
         public async Task<IActionResult> BuyByRoute([FromRoute] int id,[FromBody]OrderModel model)
         {
+            if (model.Count < 0)
+            {
+                return BadRequest();
+            }
             var product = await _context.Products.SingleOrDefaultAsync(m => m.ProductId == id);
             var result = await AddOrder(product, model);
             if (result)
@@ -74,6 +81,10 @@ namespace WebApplication14.Controllers {
 
         public async Task<bool> AddOrder(Product product, OrderModel model)
         {
+            if (model.Count < 0)
+            {
+                return false;
+            }
             var user = await _userManager.FindByIdAsync(model.UserId);
             if (user!=null)
             {

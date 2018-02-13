@@ -5,17 +5,14 @@
     <div *ngIf="IsHaveOrders=='Have'">
         <table>
             <tbody>
-                
+                 
                 <order *ngFor="let order of Orders" [order]="order">
-                    <tr><th>{{ 'First name'|translate}}</th><th></th><th>{{"Country"|translate}}</th><th>{{'Category'|translate}}</th><th>{{'Price'|translate}}</th></tr>
+                  
                 </order>
             </tbody>
         </table>
-        <span class="glyphicon glyphicon-ok" (click)="BuyOrders()"style="margin-left: -30px;
-
-margin-top: 155px;
-
-position: absolute;"></span>
+        <span class="glyphicon glyphicon-ok" (click)="BuyOrders()"style="bottom: 0px;
+left: -25px;"></span>
     </div>
     <div *ngIf="IsHaveOrders=='Doesn`t have'">
         <p style='text-align:center;'> You doesn`t have Orders</p>
