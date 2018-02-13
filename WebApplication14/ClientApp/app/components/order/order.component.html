@@ -7,7 +7,7 @@
 <td>
     {{order.product.price}}  
     </td>
-    <td>  <input type="text" name="count" [(ngModel)]="count" (change)="ChangeCount()"  placeholder="{{order.count}}" min ="1" value ="{{order.count}}" style ="background: rebeccapurple;
+    <td>  <input type="number" name="count" [(ngModel)]="count"   (change)="ChangeCount()"  placeholder="{{order.count}}" min ="1" value ="{{order.count}}" style ="background: rebeccapurple;
 border: aliceblue 0px solid;
     border-bottom-width: 0px;
     border-bottom-style: solid;
@@ -27,7 +27,8 @@ border-radius: 25px;
 -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-" required /> {{totalprice}}
+" required pattern="[0-9]{0-3}" /> {{totalprice}}
+
 </td>
 <td>
 <span class="glyphicon glyphicon-remove" style="color:orange;" (click)="Delete()"></span>
