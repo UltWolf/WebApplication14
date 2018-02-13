@@ -1,12 +1,12 @@
 <div class='container-fluid' style="background: #1a0233;;min-height:680px;">
     <div class='row'>
-        <div class='col-sm-3'>
+        <div class='col-sm-3' style ="width:100%">
             <nav-menu [isAuth] = "isAuth"></nav-menu>
         </div>
      
        
         
-        <div class='col-sm-9 body-content'style="margin-top: 100px;margin-left: -130px;">
+        <div class='col-sm-12 body-content' >
             <router-outlet (activate) ="GetAuth()"></router-outlet>
         </div>
 

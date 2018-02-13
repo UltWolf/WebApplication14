@@ -1,11 +1,5 @@
 <span class="glyphicon glyphicon-search" style="margin-top: 5px;color:orange;margin-right: 20px;"></span><input style="" type="text" (keyup)="search()" [(ngModel)]="name" Placeholder="Search">
-<div style="position:absolute;width: 450px;z-index :120;
-z-index: 120;
-margin-top: 30px;
-background: rgb(128, 9, 248);
-color: orange;
-padding: 25px;
-border: black solid 2px;" *ngIf="product">
+<div  *ngIf="product" class="products">
     <ul *ngFor="let prod of product" style="float: left;">
         <li><img src="{{prod.path}}" width="20px" height="20px" /></li>
         <li style="text-decoration:none;">{{prod.category}} </li>

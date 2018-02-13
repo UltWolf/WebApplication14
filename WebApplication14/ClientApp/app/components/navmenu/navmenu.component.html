@@ -5,36 +5,28 @@
      <div class="menu_component">
               <li [routerLinkActive]="['link-active']">
                     <a [routerLink]="['/products']">
-                        <span class='glyphicon glyphicon-list-alt' style= "border: 2px orange solid;
-padding: 10px;
-border-radius: 30px;"></span> {{ 'List' | translate }}
+                        <span class='glyphicon glyphicon-list-alt' id="navigation"></span><span class ="text-menu"> {{ 'List' | translate }}</span>
                     </a>
                 </li>
     </div>
      <div class="menu_component" *ngIf="isAuth">
               <li [routerLinkActive]="['link-active']"  style = "color:orange" (click) = "logout()">
            
-                        <span class='glyphicon glyphicon-off' style="border: 2px orange solid;
-padding: 10px;
-border-radius: 30px;"></span> {{ 'Sign Out' | translate }}
+                        <span class='glyphicon glyphicon-off' id="navigation"></span> <span class ="text-menu">{{ 'Sign Out' | translate }}</span>
                     
                 </li>
     </div>
      <div class="menu_component" *ngIf="!isAuth">
               <li [routerLinkActive]="['link-active']">
                     <a [routerLink]="['/login']">
-                        <span class='glyphicon glyphicon-user' style="border: 2px orange solid;
-padding: 10px;
-border-radius: 30px;"></span> {{ 'Sign in' | translate }}
+                        <span class='glyphicon glyphicon-user' id="navigation"></span> <span class ="text-menu">{{ 'Sign in' | translate }}</span>
                     </a>
                 </li>
     </div>
      <div class="menu_component" *ngIf="!isAuth">
               <li [routerLinkActive]="['link-active']">
                     <a [routerLink]="['/register']">
-                        <span class='glyphicon glyphicon-lock' style="border: 2px orange solid;
-padding: 10px;
-border-radius: 30px;"></span> {{ 'Sign up' | translate }}
+                        <span class='glyphicon glyphicon-lock' id="navigation"></span>  <span class ="text-menu">{{ 'Sign up' | translate }}</span>
                     </a>
                 </li>
     </div>
@@ -49,7 +41,7 @@ border-radius: 30px;"></span> {{ 'Sign up' | translate }}
               <search></search>
                            </li>
     </div>
-     <div class="btn-group" style ="margin-top: 15px;" >
+     <div class="btn-group"  >
                 <button *ngFor="let lang of supportedLanguages"
                         (click)="selectLang(lang.value)"
                         class="lang_btn" [class.lang_btn_sc]="isCurrentLang(lang.value)">

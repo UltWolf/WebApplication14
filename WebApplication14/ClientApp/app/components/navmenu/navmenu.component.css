@@ -17,6 +17,14 @@ box-shadow: 0px 9px 13px -2px rgba(0,0,0,0.75);
 position: fixed;
 z-index: 2;
 }
+.btn-group{
+    margin-top: 15px;
+}
+#navigation{
+    border: 2px orange solid;
+padding: 10px;
+border-radius: 30px;
+}
 li{
     list-style: none;
     margin: 0 50px 0 0;
@@ -35,5 +43,85 @@ a{
     background-color: #f9790c;
     border-color: #f37d0b;
 }
+@media screen and (max-width:830px){
+    ul {
+        position: relative;
+        width: 100%;
+        border-radius: 0px;
+        border-width: 0px;
+        height: 100%;
+        padding: 0px;
+        float: none;
+    }
+   li {
+        float: none;
+        font-size: 15px;
+        margin: 6px;
+    }
+   li a {
+        border-radius: 4px;
+    }
+  a {
+        
+        width: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .text-menu{
+        display: none;
+    }
+}
+@media screen and (max-width:590px){
+    .btn-group{
+position: absolute;
+left: 61%;
+margin-top: 7px;
+}
+}
+@media screen and (max-width:450px){
+    span{
+   padding:5px;
+}
+#navigation{
+    border: 2px orange solid;
+padding: 5px;
+border-radius: 30px;
+}
+}
+@media screen and (max-width:415px){
 
+  .menu_component>li{
+    padding: 0;
+  }
+  .btn-group{
+    margin-top: 0px;
+    left:55%;
+}
+    }
+
+    @media screen and (max-width:350px){
+    
+          .btn-group{
+    left:53%;
+}
+    }
+
+    @media screen and (max-width:330px){
+    
+          .btn-group{
+    left:50%;
+}
+    }
+ @media screen and (max-width:308px){
+    
+          .btn-group{
+    left:45%;
+}
+    }
+ @media screen and (max-width:288px){
+    #navigation{
+    margin-top: 25px;
+}
+}
 

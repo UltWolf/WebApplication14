@@ -11,21 +11,20 @@
                 </order>
             </tbody>
         </table>
-        <span class="glyphicon glyphicon-ok" (click)="BuyOrders()"style="bottom: 0px;
-left: -25px;"></span>
+        <span class="glyphicon glyphicon-ok" (click)="BuyOrders()" id="ok"></span>
     </div>
     <div *ngIf="IsHaveOrders=='Doesn`t have'">
         <p style='text-align:center;'> You doesn`t have Orders</p>
     </div>
     
-    <span class="glyphicon glyphicon-remove" style="color:orange;margin-top: 15px;
+    <span class="glyphicon glyphicon-remove" 
+    style="color:orange;
+    margin-top: 15px;
 
 position: absolute;
 
 right: 20px;" (click)="OnOrders()"></span>
 </div>
     <div  class="bucket_of" >
-        <span class="glyphicon glyphicon-shopping-cart" (click)="OnOrders()" style="border: 2px orange solid;
-padding: 10px;
-border-radius: 30px;"></span>
+        <span class="glyphicon glyphicon-shopping-cart" (click)="OnOrders()" id="navigation"></span>
     </div>

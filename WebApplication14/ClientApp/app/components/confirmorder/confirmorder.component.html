@@ -10,10 +10,8 @@ text-shadow: 1px 1px 2px black;
 color:orange;">{{"Confirm Pay"|translate}}</p>
 <div *ngIf="!loading">
 <div *ngIf="orders">
-    <div *ngIf="!empty" style ="width: 100%;
-padding-left: 10%;">
-        <table style="width: 70%;
-margin-left: 7%;">
+    <div *ngIf="!empty"  class="wrap_table">
+        <table class="orders_table" >
             <tbody>
                 <tr><th>{{ 'First name'|translate}}</th><th></th><th>{{"Country"|translate}}</th><th>{{'Category'|translate}}</th><th>{{"Count"|translate}}</th><th>{{'Price'|translate}}</th></tr>
                 <tr *ngFor="let order of orders">
@@ -31,12 +29,9 @@ margin-left: 7%;">
 
             </tbody>
         </table>
-        <div *ngIf="confirmLink" style="padding-left: 10%;
-padding-right: 20%;">
-            <a href="{{confirmLink}}"> <img src="/paypal.png" height="50px" width="70px" style="margin-left: 40px;"> </a>
-            <a href="{{pathExcel}}"><img src="/excel.png" height="30px" width="40px" style="float: right;
-margin-right: 120px;
-margin-top: 10px;"></a>
+        <div *ngIf="confirmLink" class="links">
+            <a href="{{confirmLink}}"> <img src="/paypal.png" height="50px" width="70px"class="paypal"> </a>
+            <a href="{{pathExcel}}"><img src="/excel.png" height="30px" width="40px" class="excel"></a>
         </div>
 
         <div *ngIf="!confirmLink">

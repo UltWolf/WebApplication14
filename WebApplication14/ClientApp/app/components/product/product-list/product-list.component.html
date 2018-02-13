@@ -8,13 +8,13 @@
 <div class="blob blob-5"></div>
 </div>
 </div>
-<div *ngIf="products">
+<div *ngIf="products" class="products">
 <ul  *ngIf="!loading">
 <li *ngFor="let p of parametres"  [ngStyle]="setActiveParameteStyle(p)" (click) = "ChangeParametre(p)">{{p|translate}}</li>
 </ul>
 
 <div  class = "product-container">
-    <productsingleinlist *ngFor="let product of products" [product]="product" style="width:35%">
+    <productsingleinlist  class="product-single-component"*ngFor="let product of products" [product]="product" >
     </productsingleinlist>
 </div>
   <ul class ="pages" style="position: relative;"*ngIf="!loading"><li *ngFor ="let page of pages" (click)="SetPage(page)" style="margin-left:5px;" [ngStyle]="setActiveStyle(page)">{{page}}</li></ul>

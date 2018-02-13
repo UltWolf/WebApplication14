@@ -25,3 +25,63 @@ width: 136px;
 border-radius: 25px;
 padding: 5px;
 }
+.products{
+    position:absolute;width: 450px;z-index :120;
+z-index: 120;
+margin-top: 30px;
+background: rgb(128, 9, 248);
+color: orange;
+padding: 25px;
+border: black solid 2px;
+}
+@media screen and (max-width:980px){
+.products{
+width: 350px;
+padding: 10px;
+}
+}
+@media screen and (max-width:580px){
+.products{
+margin-top: 20px;
+margin-left: -210px;
+}
+}
+@media screen and (max-width:430px){
+.products{
+margin-top: 20px;
+margin-left: -180px;
+}
+}
+@media screen and (max-width:400px){
+.products{
+margin-top: 20px;
+margin-left: -150px;
+}
+}
+@media screen and (max-width:350px){
+.products{
+width: 300px;
+padding: 0px;
+margin-left: -130px;
+}
+}
+@media screen and (max-width:300px){
+.products{
+width: 280px;
+padding: 0px;
+margin-left: -130px;
+}
+ul{
+    margin-left: -30px;
+}
+}
+@media screen and (max-width:590px){
+ input{
+ 	margin-top: 30px;
+ }
+}
+@media screen and (max-width:350px){
+  .glyphicon-search::before{
+            display: none;
+        }
+    }

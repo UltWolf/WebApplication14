@@ -16,14 +16,27 @@ padding-top: 40px;
 color: orange;
 box-shadow: inset 11px 11px 6px -4px rgba(0,0,0,0.75);
 }
+.excel{
+    float: right;
+margin-right: 120px;
+margin-top: 10px;
+}
+.paypal{
+    margin-left: 40px;
+}
+.links{
+    padding-left: 10%;
+padding-right: 20%;
+}
 .blob-div{
-margin-left: 390px;
+margin-left: auto;
+margin-right: auto;
 margin-top: 100px;
     border-left: 2px #f98809 solid;
     border-radius: 138px;
     width: 200px;
     padding: 25px;
-    position: absolute;
+    position: relative;
     height: 200px;
     top: 50%;
     border-right: 2px orange solid;
@@ -46,7 +59,79 @@ margin-top: 100px;
 .blob-4 { animation: animate-to-4 1.5s infinite; }
 .blob-0 { animation: animate-to-0 1.5s infinite; }
 .blob-5 { animation: animate-to-5 1.5s infinite; }
+.orders_table{
+ width: 70%;
+margin-left: 7%;   
+}
+.wrap_table{
+ width: 100%;
+padding-left: 10%;   
+}
+@media screen and (max-width:610px){
+    .excel{
+        margin-right: 20%;
+    }
+}
+@media screen and (max-width:500px){
+    .excel{
+        margin-right: 15%;
+    }
+}
+@media screen and (max-width:450px){
+    .orders_table{
+        margin-left: 2%;
+    }
+    .wrap_table{
+ width: 100%;
+padding-left: 2%;   
+}
+}
+@media screen and (max-width:370px){
+    .orders_table{
+        margin-left: 0%;
+    }
+    .wrap_table{
+ width: 100%;
+padding-left: 15%;   
+}
+}
+@media screen and (max-width: 370px){
+    
+    .links{
+    padding-left: 5%;
+}
+      .paypal{
+margin-left: 0;
+      }
 
+ td:nth-child(2)
+ {
+display: none;
+    }
+  
+     td:nth-child(3)
+ {
+display: none;
+    }
+
+     td:nth-child(4)
+ {
+display: none;
+    }
+  th:nth-child(2)
+ {
+display: none;
+    }
+    th:nth-child(3)
+ {
+display: none;
+    }
+       th:nth-child(4)
+ {
+display: none;
+    }
+
+    }
 @keyframes animate-blob-div{
 	0%{
      transform:rotate(0deg);

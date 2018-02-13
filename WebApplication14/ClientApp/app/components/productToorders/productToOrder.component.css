@@ -1,6 +1,7 @@
 .bucket_of{
     color:orange;
 }
+
 .bucket_on {
     z-index: 200;
     width: 900px;
@@ -16,6 +17,10 @@ background: rgb(39, 4, 76);
 padding-top: 40px;
 color: orange;
 }
+#ok{
+    bottom: 0px;
+left: -25px;
+}
 td,th{
     margin-left:5px;
     padding: 10px;
@@ -25,4 +30,88 @@ td,th{
     position: fixed;
     margin-top: 32px;
     margin-left: 825px;
+}
+#navigation{
+    border: 2px orange solid;
+padding: 10px;
+border-radius: 30px;
+}
+@media screen and (max-width:450px){
+ #navigation{
+    padding:5px;
+ }
+}
+@media screen and (max-width:415px){
+ li{
+    padding: 0px;
+ }
+}
+ @media screen and (max-width:288px){
+    #navigation{
+    margin-top: 25px;
+}
+}
+@media screen and (max-width: 950px){
+    .bucket_on{
+width: 600px;
+margin-left: -38%;
+margin-top: 60px;
+padding-bottom: 10px;
+padding-left: 10px;
+padding-top: 10px;
+}
+#ok{
+    bottom: 0px;
+left: 0px;
+}
+}
+@media screen and (max-width: 800px){
+    .bucket_on{
+        margin-left: -20%;
+    }
+}
+@media screen and (max-width: 660px){
+    .bucket_on{
+        margin-left: -25%;
+    }
+}
+@media screen and (max-width: 600px){
+    .bucket_on{
+        margin-left: -25%;
+    }
+
+}
+@media screen and (max-width: 580px){
+    .bucket_on{
+        margin-left: -32%;
+        width: 480px;
+    }
+    
+}
+@media screen and (max-width: 580px){
+    .bucket_on{
+        margin-left: -38%;
+        width: 480px;
+    }   
+}
+@media screen and (max-width: 460px){
+    .bucket_on{
+                width: 440px;
+    }
+   
+    
+}
+@media screen and (max-width: 430px) {
+    .bucket_on{
+    width: 320px;
+    margin-left: -23%;
+}
+    
+}
+@media screen and (max-width: 340px) {
+    .bucket_on{
+    width: 300px;
+    margin-left: -31%;
+}
+    
 }

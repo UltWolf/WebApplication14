@@ -8,6 +8,32 @@ text-shadow: 2px 5px black;
 .redirect_paragraph{
 text-shadow: 1px 2px black;
 font-size: 30px;
-text-align: right;
 margin-top: 55px;
+}
+@media screen and (max-width: 500px){
+	p{
+		font-size: 30px;
+	}
+	.redirect_paragraph{
+		font-size: 20px;
+margin-top: 20px;
+	}
+}
+@media screen and (max-width: 410px){
+	p{
+		font-size: 25px;
+	}
+	.redirect_paragraph{
+		font-size: 16px;
+margin-top: 20px;
+	}
+}
+@media screen and (max-width: 330px){
+	p{
+		font-size: 20px;
+	}
+	.redirect_paragraph{
+		font-size: 12px;
+margin-top: 20px;
+	}
 }

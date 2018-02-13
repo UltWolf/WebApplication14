@@ -6,7 +6,7 @@ text-align: center;
 margin: 50px;
 color: orange;
 text-shadow: 1px 1px 2px black, 0 0 1em #090604;">Information about {{name}}</h1>
-   
+   <div class="information_product">
     <img [src]="path" height="400px" width="300px"/>
     
      <div class="information">
@@ -17,6 +17,8 @@ text-shadow: 1px 1px 2px black, 0 0 1em #090604;">Information about {{name}}</h1
     
 </div>
 <button (click)=" AddProductToBucket()" class="order_add">BUY</button>
+</div>
 <div *ngIf="!name">
     We don't find, please try again
+
 </div>
