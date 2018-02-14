@@ -11,9 +11,9 @@ export class CancelPayComponent implements OnInit{
     constructor(private router:Router) {
     }
     ngOnInit(){
-    	/*  setTimeout((router: Router) => {
+    	 setTimeout((router: Router) => {
         this.router.navigate(['/products']);
-    }, 5000);*/ 
+    }, 5000);
     }
   
 }
