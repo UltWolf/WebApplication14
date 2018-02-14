@@ -50,7 +50,9 @@ export class ConfirmorderComponent implements OnInit {
             }
             this.loading = false;
 
-        })
+        }, err => {
+            this.GetListOrders();
+        });
     }
         
 

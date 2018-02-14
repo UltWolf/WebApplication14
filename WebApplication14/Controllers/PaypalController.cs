@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using PayPal.Core;
 using PayPal.Payments;
 using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -13,6 +14,7 @@ using WebApplication14.Helpers;
 using WebApplication14.Models;
 using WebApplication14.Models.ViewModel;
 using WebApplication14.Services;
+using Microsoft.AspNetCore.Http;
 
 namespace WebApplication14.Controllers
 {
@@ -31,18 +33,21 @@ namespace WebApplication14.Controllers
         [HttpGet("create-payment/{id}")]
         public async Task<IActionResult> ConfirmAsync([FromRoute]string id)
         {
+            string webroot = HttpContext.Request.Scheme;
+            string webroot1 = HttpContext.Request.Host.ToUriComponent();
+            string pathReturn = "http://"+webroot1+"/paypal/execute-payment";
+            string pathCancel = "http://" + webroot1 + "/paypal/cancel";
             var environment = new SandboxEnvironment("Acc2-UPp-z25_Olh73h5VZB3XjR16eUKtL2lHoIc27IJn8-2f5R8-Kish229pYjzdy18KR8khHJRQO5Q", "EIb_0hbZQPAEioCGLAzVpn87zRswB7zLAoRtda06Oc4IhrDAmtGYAI2z6xYplX6TdARnsuVh2TC3tHNM");
             var client = new PayPalHttpClient(environment);
             string idUser = id;
-           
             var payment = new Payment()
             {
                 Intent = "sale",
                 Transactions = GetTransactionsList(id),
                 RedirectUrls = new RedirectUrls()
                 {
-                    CancelUrl = "http://localhost:55022/paypal/cancel",
-                    ReturnUrl = "http://localhost:55022/paypal/execute-payment"
+                    CancelUrl = pathCancel,
+                    ReturnUrl = pathReturn
                 },
                 Payer = new Payer()
                 {
@@ -58,14 +63,14 @@ namespace WebApplication14.Controllers
 
             try
             {
-                HttpResponse response = await client.Execute(request);
+                BraintreeHttp.HttpResponse response = await client.Execute(request);
                 var statusCode = response.StatusCode;
                 Payment result = response.Result<Payment>();
                 LinkDescriptionObject approvalLink = PaypalHelpers.findApprovalLink(result.Links);
                 var orders = _context.Orders.Include(m => m.Product).Where(m => m.UserId == id).Where(m => m.IsConfirm == false);
                 await orders.ForEachAsync(m => m.Paymentid = result.Id);
                 await _context.SaveChangesAsync();
-                return Ok( new ConfirmModel{ confirmPath = approvalLink.Href.ToString(), excelPath = path});
+                return Ok(new ConfirmModel { confirmPath = approvalLink.Href.ToString(), excelPath = path});
             }
             catch (HttpException httpException)
             {
@@ -81,15 +86,11 @@ namespace WebApplication14.Controllers
         {
             var environment = new SandboxEnvironment("Acc2-UPp-z25_Olh73h5VZB3XjR16eUKtL2lHoIc27IJn8-2f5R8-Kish229pYjzdy18KR8khHJRQO5Q", "EIb_0hbZQPAEioCGLAzVpn87zRswB7zLAoRtda06Oc4IhrDAmtGYAI2z6xYplX6TdARnsuVh2TC3tHNM");
             var client = new PayPalHttpClient(environment);
-
-            PaymentExecuteRequest request = new PaymentExecuteRequest(paymentId);
             await _context.Orders.Where(m => m.Paymentid == paymentId).ForEachAsync(m => m.IsConfirm = true);
             await _context.SaveChangesAsync();
             try
             {
-                HttpResponse response = await client.Execute(request);
-                var statusCode = response.StatusCode;
-                Payment result = response.Result<Payment>();
+              
                 return Redirect("cancel");
             }
             catch (HttpException httpException)
@@ -114,7 +115,7 @@ namespace WebApplication14.Controllers
             await _context.SaveChangesAsync();
             try
             {
-                HttpResponse response = await client.Execute(request);
+                BraintreeHttp.HttpResponse response = await client.Execute(request);
                 var statusCode = response.StatusCode;
                 Payment result = response.Result<Payment>();
                 return Redirect("sold");
