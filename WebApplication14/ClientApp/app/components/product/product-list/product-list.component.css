@@ -106,13 +106,14 @@ body {
     background: radial-gradient(#111, #000);
 }
 .blob-div{
-margin-left: 390px;
+margin-left: auto;
+margin-right:auto;
 margin-top: 100px;
     border-left: 2px #f98809 solid;
     border-radius: 138px;
     width: 200px;
     padding: 25px;
-    position: absolute;
+    position: relative;
     height: 200px;
     top: 50%;
     border-right: 2px orange solid;

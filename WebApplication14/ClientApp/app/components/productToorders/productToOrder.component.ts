@@ -48,6 +48,7 @@ export class ProductToOrderComponent implements OnInit{
         this.GetListOrder();
     }
     BuyOrders() {
+        this.IsOn = !this.IsOn;
         this.route.navigate(['confirmorder']);
     }
     deleteOrders(){

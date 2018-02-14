@@ -33,10 +33,7 @@ namespace WebApplication14.Controllers {
         [HttpPost("update/{id}")]
         public async Task<IEnumerable<Order>> ChangeOrder([FromRoute]int id,[FromBody] OrderModel model)
         {
-            if(model.Count < 0)
-            {
-                return null;
-            }
+          
             var order = await  _context.Orders.Include(m => m.Product).SingleOrDefaultAsync(m=> m.OrderId == id);
             if (order != null)
             {
@@ -44,11 +41,14 @@ namespace WebApplication14.Controllers {
                 if (user != null)
                 {
                    if(user.Id == model.UserId)
-                    {
-                        order.Count = model.Count;
-                        order.TotalCost = model.Count * order.Product.Price;
-                        await  _context.SaveChangesAsync();
-                    }
+                    { if (order.Count > 0)
+                        {
+
+                            order.Count = model.Count;
+                            order.TotalCost = model.Count * order.Product.Price;
+                            await _context.SaveChangesAsync();
+                        }
+                        }
 
                 }
                 
@@ -63,10 +63,7 @@ namespace WebApplication14.Controllers {
         [HttpPost ("{id}")]
         public async Task<IActionResult> BuyByRoute([FromRoute] int id,[FromBody]OrderModel model)
         {
-            if (model.Count < 0)
-            {
-                return BadRequest();
-            }
+        
             var product = await _context.Products.SingleOrDefaultAsync(m => m.ProductId == id);
             var result = await AddOrder(product, model);
             if (result)
@@ -81,22 +78,23 @@ namespace WebApplication14.Controllers {
 
         public async Task<bool> AddOrder(Product product, OrderModel model)
         {
-            if (model.Count < 0)
-            {
-                return false;
-            }
+      
             var user = await _userManager.FindByIdAsync(model.UserId);
             if (user!=null)
             {
                 Order orderBD = await IsIdentityProduct(user.Id, product.ProductId);
-                if (orderBD == null)
+                if (model.Count > 0)
                 {
-                    Order orderInDb = new Order() { TotalCost = model.Count *product.Price, UserId = user.Id, Product = product, User = user, IdProduct = product.ProductId, DateOfOrder = DateTime.Now, Count = model.Count };
-                    await _context.AddAsync(orderInDb);
-                }
-                else
-                {
-                    orderBD.Count = model.Count;
+                    if (orderBD == null)
+                    {
+                        Order orderInDb = new Order() { TotalCost = model.Count * product.Price, UserId = user.Id, Product = product, User = user, IdProduct = product.ProductId, DateOfOrder = DateTime.Now, Count = model.Count };
+                        await _context.AddAsync(orderInDb);
+                    }
+                    else
+                    {
+                        orderBD.Count = model.Count;
+                        orderBD.IsConfirm = false;
+                    }
                 }
                 await _context.SaveChangesAsync();
                 return true;

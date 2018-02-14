@@ -34,6 +34,7 @@ namespace WebApplication14.Controllers
             var environment = new SandboxEnvironment("Acc2-UPp-z25_Olh73h5VZB3XjR16eUKtL2lHoIc27IJn8-2f5R8-Kish229pYjzdy18KR8khHJRQO5Q", "EIb_0hbZQPAEioCGLAzVpn87zRswB7zLAoRtda06Oc4IhrDAmtGYAI2z6xYplX6TdARnsuVh2TC3tHNM");
             var client = new PayPalHttpClient(environment);
             string idUser = id;
+           
             var payment = new Payment()
             {
                 Intent = "sale",
