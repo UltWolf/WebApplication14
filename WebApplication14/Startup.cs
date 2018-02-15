@@ -33,7 +33,7 @@ namespace WebApplication14
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            services.AddScoped<IDbInitializer, DbInitializer>();
+          
             var jwtAppSettingOptions = Configuration.GetSection(nameof(JwtIssuerOptions));
 
             services.AddDbContext<ApplicationContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("RomfyConnection")));
@@ -91,7 +91,7 @@ namespace WebApplication14
             {
                 app.UseExceptionHandler("/Home/Error");
             }
-            
+         
             app.UseDefaultFiles();
             app.UseStaticFiles();
             //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()

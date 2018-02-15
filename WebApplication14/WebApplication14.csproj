@@ -16,6 +16,7 @@
     <PackageReference Include="FluentValidation.AspNetCore" Version="7.3.4" /> 
     <PackageReference Include="log4net" Version="2.0.8" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.0.1" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.2" />
     <PackageReference Include="PayPal" Version="2.0.0-beta00" />
 

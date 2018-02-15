@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,32 +11,18 @@ using WebApplication14.Models.ViewModel;
 
 namespace WebApplication14.Services
 {
-    public class DbInitializer:IDbInitializer
+    public class DbInitializer 
     {
 
-        private readonly ApplicationContext _context;
-        private readonly UserManager<AppUser> _userManager;
-        private readonly RoleManager<IdentityRole> _roleManager;
-        private readonly IMapper _mapper;
-
-        public DbInitializer(
-            ApplicationContext context,
-            UserManager<AppUser> userManager,
-            RoleManager<IdentityRole> roleManager,IMapper mapper)
+        public static void InitializeMigrations(IApplicationBuilder app)
         {
-            _context = context;
-            _userManager = userManager;
-            _roleManager = roleManager;
-            _mapper = mapper;
-        }
+            using (var serviceScope =  app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+            {
+                ApplicationContext dbContext = serviceScope.ServiceProvider.GetRequiredService<ApplicationContext>();
+                dbContext.Database.EnsureCreated();
 
-        public async void Initialize()
-        {
-            
-
-          
-
-
+                // TODO: Use dbContext if you want to do seeding etc.
+            }
         }
     }
     }
