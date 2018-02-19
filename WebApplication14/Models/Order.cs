@@ -5,16 +5,16 @@ namespace WebApplication14.Models
 {
     public class Order : CQRSlite.Domain.AggregateRoot
     {
-        public int OrderId{ get; set; }
-        public int IdProduct { get; set; }
-        public System.Collections.Generic.List<int> Product { get; set; }
-        public string Paymentid { get; set; }
-        public DateTime DateOfOrder { get; set; }
-        public string UserId { get; set; }
-        public AppUser User { get; set; }
-        public int Count { get; set; }
-        public decimal TotalCost { get; set; }
-        public bool IsConfirm { get; set; }
+        private int OrderId{ get; set; }
+        private int IdProduct { get; set; }
+        private System.Collections.Generic.List<int> Product { get; set; }
+        private string Paymentid { get; set; }
+        private DateTime DateOfOrder { get; set; }
+        private string UserId { get; set; }
+        private AppUser User { get; set; }
+        private int Count { get; set; }
+        private decimal TotalCost { get; set; }
+        private bool IsConfirm { get; set; }
         public Order(System.Guid id, System.Collections.Generic.List<int> product, 
                      string userId, int count, bool isConfirm, decimal totalCost)
         {
